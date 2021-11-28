@@ -325,17 +325,17 @@
                 <div class="modal-content">
                     <div class="modal-header">						
                         <h4 class="modal-title">Add Property</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <button type="button" id="cancelFormBtn" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body">					
-                        <form class="row g-3">
+                        <form id="addForm" class="row g-3" method="POST" action="/add">
                             {{!-- START GENERAL --}}
                             <div class="general-section col-12">						
                                 <h4 class="general-title">General</h4>
                             </div>
                             <div class="col-md-6 form-group">
-                              <label for="inputName" class="form-label">Name</label>
-                              <input type="text" class="form-control" id="inputName" name="propertyName" required>
+                              <label for="inputPropertyName" class="form-label">Property name</label>
+                              <input type="text" class="form-control" id="inputPropertyName" name="propertyName" value="" required>
                             </div>
                             <div class="col-md-6">
                               <label for="inputCategory" class="form-label">Category</label>
@@ -359,6 +359,20 @@
                               <label for="inputPrice" class="form-label">Price</label>
                               <input type="number" class="form-control" id="inputPrice" min="0" max="1000000000000" name="propertyPrice" required>
                             </div>
+
+                            <div class="col-md-6">
+                              <label for="inputRate" class="form-label">Rate</label>
+                              <input type="number" class="form-control" id="inputRate" min="1" max="5" name="propertyRate">
+                            </div>
+
+                            <div class="col-md-6">
+                              <label for="inputStatus" class="form-label">Status</label>
+                              <select id="inputStatus" class="form-select" name="propertyStatus" required>
+                                <option value="" disabled selected>Select your option</option>
+                                <option value="For Sale">For Sale</option>
+                                <option value="Sold Out">Sold Out</option>
+                              </select>
+                            </div>
                             {{!-- END GENERAL --}}
 
                             {{!-- START FEATURE --}}
@@ -367,16 +381,51 @@
                             </div>
 
                             <div id="featureList" class="col-12">
-
+                                <div class="d-flex align-item-center">
+                                    <input type="text" class="form-control" name="propertyFeature" style="width: 70%;" required>                         
+                                </div>
+                                <br>
                             </div>
 
 
                             <div class="col-12 add-new-feature-btn-wrapper">
                                 <input id="add-new-feature-btn" type="button" class="btn btn-primary" value="Add new feature">			
                             </div>
+
+                            
                             {{!-- END FEATURE --}}
+
+                            {{!-- START SELLER --}}
+                            <div class="seller-section col-12">						
+                                <h4 class="seller-title">Seller</h4>
+                            </div>
+
+                            <div class="col-md-6 form-group">
+                              <label for="inputSellerName" class="form-label">Seller name</label>
+                              <input type="text" class="form-control" id="inputSellerName" name="sellerName" required>
+                            </div>
+
+                            <div class="col-md-6 form-group">
+                              <label for="inputSellerEmail" class="form-label">Email</label>
+                              <input type="email" class="form-control" id="inputSellerEmail" placeholder="Ex: abc@gmail.com" name="sellerEmail" required>
+                            </div>
+
+                            <div class="col-md-6 form-group">
+                              <label for="inputSellerPhoneNumber" class="form-label">Phone number</label>
+                              <input type="tel" class="form-control" id="inputSellerPhoneNumber" pattern="[0-9]{11}" placeholder="Ex: 0932288755" name="sellerPhoneNumber">
+                            </div>
+
+
+                            <div class="col-12 add-new-feature-btn-wrapper">
+                                <input id="add-new-feature-btn" type="button" class="btn btn-primary" value="Add new feature">			
+                            </div>
+
+                            
+                            {{!-- END SELLER --}}
+
+                            {{!-- <input type="file" name="name" multiple> --}}
                             <div class="modal-footer">
-                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                <input type="button" id="cancelFormBtn" class="btn btn-default" data-dismiss="modal" value="Cancel">
                                 <input type="submit" class="btn btn-success" value="Add">
                             </div>
                         </form>
@@ -415,13 +464,13 @@
 
 {{!-- ADD NEW FEATURE --}}
 <script>
-    let i = 0;
+    let i = 1;
     document.getElementById('add-new-feature-btn').onclick = function () {
         let template = `
             <div class="d-flex align-item-center">
-                <input type="text" class="form-control" id="feature-${i}" name="propertyFeature[${i}]" style="width: 70%;" required>
+                <input type="text" class="form-control" name="propertyFeature" style="width: 70%;" required>
                 <div id="delete-feature-btn">
-                    <a href="#" onclick="document.getElementById('delete-feature-btn').parentElement.parentElement.remove();" title="Close">
+                    <a href="#" onclick="parentElement.parentElement.parentElement.remove();" title="Close">
                         <i class="fa fa-close color-danger"></i>
                     </a>
                 </div>
@@ -436,13 +485,9 @@
         i++;
     }
 
-    function deleteBtnClicked() {
-        let deleteBtn = document.getElementById('delete-feature-btn');
-        if(deleteBtn != null) {
-            document.getElementById('delete-feature-btn').onclick = function () {
-                document.getElementById('delete-feature-btn').parentElement.remove();
-            }
-        }
+    // Clear form input when click cancel button
+    document.getElementById("cancelFormBtn").onclick = () => {
+        document.getElementById("addForm").reset();
     }
 
 </script>

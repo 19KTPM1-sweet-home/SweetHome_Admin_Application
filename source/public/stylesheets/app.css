@@ -32,7 +32,7 @@
   text-overflow: ellipsis;
 }
 
-.feature-section {
+.feature-section, .seller-section {
   margin-top: 2rem;
 }
 
