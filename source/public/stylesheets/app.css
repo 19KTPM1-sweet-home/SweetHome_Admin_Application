@@ -1,0 +1,48 @@
+/* CUSTOM SCROLL BAR */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  border-style: solid;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* TABLE */
+.table-body tr td div {
+  overflow: auto;
+  min-width: 3rem;
+  max-height: 2.5rem;
+}
+
+.address-col {
+  text-overflow: ellipsis;
+}
+
+.feature-section {
+  margin-top: 2rem;
+}
+
+#delete-feature-btn {
+  margin-left: 0.2rem;
+  margin-top: 0.3rem;
+}
+
+.add-new-feature-btn-wrapper {
+  margin-top: 0;
+}
+
+/*# sourceMappingURL=app.css.map */

@@ -185,8 +185,8 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Properties</h4>
-                            <div class="col-sm-6">
-                                <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>						
+                            <div class="success-btn-wrapper">
+                                <a href="#addPropertyModal" class="btn btn-success" data-toggle="modal"><i class="fa fa-plus"></i> <span>Add New Property</span></a>						
                             </div>
                         </div>
                         <div class="card-body">
@@ -200,19 +200,28 @@
                                             <th scope="col">Seller</th>
                                             <th scope="col">Price</th>
                                             <th scope="col">Status</th>
+                                            <th scope="col">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="table-body">
                                         <tr>
-                                            <td>Air Conditioner</td>
                                             <td>
-                                                <div class="progress" style="background: rgba(127, 99, 244, .1)">
-                                                    <div class="progress-bar bg-primary" style="width: 70%;" role="progressbar"><span class="sr-only">70% Complete</span>
-                                                    </div>
-                                                </div>
+                                                <div class="name-col">Căn hộ Thái Ấp</div>
                                             </td>
-                                            <td>Apr 20,2018</td>
-                                            <td><span class="badge badge-primary">70%</span>
+                                            <td>
+                                                <div class="category-col">House</div>
+                                            </td>
+                                            <td>
+                                                <div class="address-col">Xã Long Thạnh, Quận Thốt Nốt, TP.Cần Thơ</div>
+                                            </td>
+                                            <td>
+                                                <div class="seller-col">Lê Thị Trân</div>
+                                            </td>
+                                            <td>
+                                                <div class="price-col">3500000000</div>
+                                            </td>
+                                            <td>
+                                                <div class="status-col">For Sale</div>
                                             </td>
                                             <td>
                                                 <span>
@@ -235,6 +244,7 @@
                                             </td>
                                             <td>May 27,2018</td>
                                             <td><span class="badge badge-success">70%</span>
+                                            </td>
                                             </td>
                                             <td><span><a href="javascript:void()" class="mr-4" data-toggle="tooltip"
                                                         data-placement="top" title="Edit"><i
@@ -309,6 +319,71 @@
                 </div>
             </div>
         </div>
+        <!-- Edit Modal HTML -->
+        <div id="addPropertyModal" class="modal fade">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">						
+                        <h4 class="modal-title">Add Property</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">					
+                        <form class="row g-3">
+                            {{!-- START GENERAL --}}
+                            <div class="general-section col-12">						
+                                <h4 class="general-title">General</h4>
+                            </div>
+                            <div class="col-md-6 form-group">
+                              <label for="inputName" class="form-label">Name</label>
+                              <input type="text" class="form-control" id="inputName" name="propertyName" required>
+                            </div>
+                            <div class="col-md-6">
+                              <label for="inputCategory" class="form-label">Category</label>
+                              <select id="inputCategory" class="form-select" name="propertyCategory" required>
+                                <option value="" disabled selected>Select your option</option>
+                                <option value="house">House</option>
+                                <option value="apartment">Apartment</option>
+                                <option value="villa">Villa</option>
+                                <option value="land">Land</option>
+                              </select>
+                            </div>
+                            <div class="col-12">
+                              <label for="inputAddress" class="form-label">Address</label>
+                              <input type="text" class="form-control" id="inputAddress" name="propertyAddress" required>
+                            </div>
+                            <div class="col-12">
+                              <label for="inputDescription" class="form-label">Description</label>
+                              <textarea class="form-control" id="inputDescription" name="propertyDescription" required></textarea>
+                            </div>
+                            <div class="col-md-6">
+                              <label for="inputPrice" class="form-label">Price</label>
+                              <input type="number" class="form-control" id="inputPrice" min="0" max="1000000000000" name="propertyPrice" required>
+                            </div>
+                            {{!-- END GENERAL --}}
+
+                            {{!-- START FEATURE --}}
+                            <div class="feature-section col-12">						
+                                <h4 class="feature-title">Features</h4>
+                            </div>
+
+                            <div id="featureList" class="col-12">
+
+                            </div>
+
+
+                            <div class="col-12 add-new-feature-btn-wrapper">
+                                <input id="add-new-feature-btn" type="button" class="btn btn-primary" value="Add new feature">			
+                            </div>
+                            {{!-- END FEATURE --}}
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                <input type="submit" class="btn btn-success" value="Add">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!--**********************************
         Content body end
@@ -337,3 +412,37 @@
 
 
 </div>
+
+{{!-- ADD NEW FEATURE --}}
+<script>
+    let i = 0;
+    document.getElementById('add-new-feature-btn').onclick = function () {
+        let template = `
+            <div class="d-flex align-item-center">
+                <input type="text" class="form-control" id="feature-${i}" name="propertyFeature[${i}]" style="width: 70%;" required>
+                <div id="delete-feature-btn">
+                    <a href="#" onclick="document.getElementById('delete-feature-btn').parentElement.parentElement.remove();" title="Close">
+                        <i class="fa fa-close color-danger"></i>
+                    </a>
+                </div>
+            </div>
+            <br>`;
+
+        let container = document.getElementById('featureList');
+        let div = document.createElement('div');
+        div.innerHTML = template;
+        div.classList.add('featureItem');
+        container.appendChild(div);
+        i++;
+    }
+
+    function deleteBtnClicked() {
+        let deleteBtn = document.getElementById('delete-feature-btn');
+        if(deleteBtn != null) {
+            document.getElementById('delete-feature-btn').onclick = function () {
+                document.getElementById('delete-feature-btn').parentElement.remove();
+            }
+        }
+    }
+
+</script>
