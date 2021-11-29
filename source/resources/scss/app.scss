@@ -36,7 +36,17 @@
 .address-col {
     text-overflow: ellipsis;
 }
-  
+
+// PAGING
+.paging-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.paging-wrapper ul{
+    margin-right: 1.25rem;
+}
 
 .feature-section, .seller-section{
     margin-top: 2rem;
