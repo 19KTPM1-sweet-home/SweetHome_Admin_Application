@@ -204,113 +204,7 @@
                                         </tr>
                                     </thead>
                                     <tbody class="table-body">
-                                        <tr>
-                                            <td>
-                                                <div class="name-col">Căn hộ Thái Ấp</div>
-                                            </td>
-                                            <td>
-                                                <div class="category-col">House</div>
-                                            </td>
-                                            <td>
-                                                <div class="address-col">Xã Long Thạnh, Quận Thốt Nốt, TP.Cần Thơ</div>
-                                            </td>
-                                            <td>
-                                                <div class="seller-col">Lê Thị Trân</div>
-                                            </td>
-                                            <td>
-                                                <div class="price-col">3500000000</div>
-                                            </td>
-                                            <td>
-                                                <div class="status-col">For Sale</div>
-                                            </td>
-                                            <td>
-                                                <span>
-                                                    <a href="javascript:void()" class="mr-4" data-toggle="tooltip"
-                                                        data-placement="top" title="Edit"><i
-                                                            class="fa fa-pencil color-muted"></i> </a>
-                                                    <a href="javascript:void()" data-toggle="tooltip"
-                                                        data-placement="top" title="Close"><i
-                                                            class="fa fa-close color-danger"></i></a>
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Textiles</td>
-                                            <td>
-                                                <div class="progress" style="background: rgba(76, 175, 80, .1)">
-                                                    <div class="progress-bar bg-success" style="width: 70%;" role="progressbar"><span class="sr-only">70% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>May 27,2018</td>
-                                            <td><span class="badge badge-success">70%</span>
-                                            </td>
-                                            </td>
-                                            <td><span><a href="javascript:void()" class="mr-4" data-toggle="tooltip"
-                                                        data-placement="top" title="Edit"><i
-                                                            class="fa fa-pencil color-muted"></i> </a><a
-                                                        href="javascript:void()" data-toggle="tooltip"
-                                                        data-placement="top" title="Close"><i
-                                                            class="fa fa-close color-danger"></i></a></span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Milk Powder</td>
-                                            <td>
-                                                <div class="progress" style="background: rgba(70, 74, 83, .1)">
-                                                    <div class="progress-bar bg-dark" style="width: 70%;" role="progressbar"><span class="sr-only">70% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>May 18,2018</td>
-                                            <td><span class="badge badge-dark">70%</span>
-                                            </td>
-                                            <td><span><a href="javascript:void()" class="mr-4" data-toggle="tooltip"
-                                                        data-placement="top" title="Edit"><i
-                                                            class="fa fa-pencil color-muted"></i> </a><a
-                                                        href="javascript:void()" data-toggle="tooltip"
-                                                        data-placement="top" title="Close"><i
-                                                            class="fa fa-close color-danger"></i></a></span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Vehicles</td>
-                                            <td>
-                                                <div class="progress" style="background: rgba(255, 87, 34, .1)">
-                                                    <div class="progress-bar bg-danger" style="width: 70%;" role="progressbar"><span class="sr-only">70% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>Mar 27,2018</td>
-                                            <td><span class="badge badge-danger">70%</span>
-                                            </td>
-                                            <td><span><a href="javascript:void()" class="mr-4" data-toggle="tooltip"
-                                                        data-placement="top" title="Edit"><i
-                                                            class="fa fa-pencil color-muted"></i> </a><a
-                                                        href="javascript:void()" data-toggle="tooltip"
-                                                        data-placement="top" title="Close"><i
-                                                            class="fa fa-close color-danger"></i></a></span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Boats</td>
-                                            <td>
-                                                <div class="progress" style="background: rgba(255, 193, 7, .1)">
-                                                    <div class="progress-bar bg-warning" style="width: 70%;" role="progressbar"><span class="sr-only">70% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>Jun 28,2018</td>
-                                            <td><span class="badge badge-warning">70%</span>
-                                            </td>
-                                            <td><span><a href="javascript:void()" class="mr-4" data-toggle="tooltip"
-                                                        data-placement="top" title="Edit"><i
-                                                            class="fa fa-pencil color-muted"></i> </a><a
-                                                        href="javascript:void()" data-toggle="tooltip"
-                                                        data-placement="top" title="Close"><i
-                                                            class="fa fa-close color-danger"></i></a></span>
-                                            </td>
-                                        </tr>
+                                        {{!-- Jquery will insert properties here --}}
                                     </tbody>
                                 </table>
                             </div>
@@ -450,19 +344,9 @@
     <!--**********************************
         Footer end
     ***********************************-->
-
-    <!--**********************************
-       Support ticket button start
-    ***********************************-->
-
-    <!--**********************************
-       Support ticket button end
-    ***********************************-->
-
-
 </div>
 
-{{!-- ADD NEW FEATURE --}}
+{{!-- ADD NEW FEATURE FORM EVENT --}}
 <script>
     let i = 1;
     document.getElementById('add-new-feature-btn').onclick = function () {
@@ -491,3 +375,7 @@
     }
 
 </script>
+
+{{!-- JQuery --}}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{{!-- <script src="../../public/jquery/getRequest.js"></script> --}}

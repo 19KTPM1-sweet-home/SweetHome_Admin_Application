@@ -22,12 +22,17 @@
 }
   
   /* TABLE */
+.table {
+    color: #000000;
+}
+
 .table-body tr td div {
     overflow: auto;
-    min-width: 3rem;
+    min-width: 3.5rem;
     max-height: 2.5rem;
+    text-overflow: ellipsis;
 }
-  
+
 .address-col {
     text-overflow: ellipsis;
 }
