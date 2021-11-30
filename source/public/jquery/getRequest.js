@@ -1,12 +1,21 @@
 $(window).on('load', function () {
-    loadPropertiesPerPage(1);
+    // --------------DEFAULT VALUE OF PAGINATION-----------------
     const propertiesPerPage = 5;
     const defaultTotalPages = 10;
+
     function loadPropertiesPerPage(currentPage) {
-        const url = 'http://localhost:3000/properties/page/' + currentPage.toString();
+        const url = 'http://localhost:3000/property/page/' + currentPage.toString();
         $.get(url, function (data) {
-            var tableBody = $("<tbody></tbody>");
+            // parameter: data = {
+            //     properties: array of properties
+            //     count: total properties in db
+            // }
+
+            // Table body temporary container
+            const tableBody = $("<tbody></tbody>");
             tableBody.addClass("table-body");
+
+            // Load data to temporary table body
             data.properties.forEach((property, index, arr) => {
                 const template = `<tr>
                     <td>
@@ -38,43 +47,33 @@ $(window).on('load', function () {
                         </div>
                     </td>
                 </tr>`;
+
                 tableBody.append(template);
+
+                // Finish load all data of a page => render to layout
                 if(index == arr.length - 1) {
                     $(".table-body").replaceWith(tableBody);
                 }
             });
-            // var totalPages = data.count;
-            // var currentPage = $('.paging-wrapper').twbsPagination('getCurrentPage');
-            // // $('.paging-wrapper').empty();
-            // // $('.paging-wrapper').removeData("twbs-pagination");
-            // // $('.paging-wrapper').unbind("page");
-            // $('.paging-wrapper').twbsPagination('destroy');
-            // console.log('destroyed')
-            // $('.paging-wrapper').twbsPagination({
-            //     startPage: currentPage,
-            //     totalPages: 16,
-            //     visiblePages: propertiesPerPage,
-            //     onPageClick: function (event, currentPage) {
-            //         loadPropertiesPerPage(currentPage);
-            //     }
-            // });
+
+            // Update total properties in every get request
             $('.paging-wrapper').pagination('updateItems', data.count);
         });
     }
 
-    function pagination() {
-        //totalPage = Math.ceil(totalPage / propertiesPerPage);
+    function initPagination() {
         $('.paging-wrapper').pagination({
             items: defaultTotalPages,
             itemsOnPage: propertiesPerPage,
-            onPageClick: function (currentPage, event) {
-                // $('.paging-wrapper').empty();
-                // $('.paging-wrapper').removeData("twbs-pagination");
-                // $('.paging-wrapper').unbind("page");
+            onInit: loadPropertiesPerPage(1), // Load 1st page when Home page is loaded 
+            onPageClick: function (currentPage) {
+                $(this).removeAttr("href");
                 loadPropertiesPerPage(currentPage);
             }
         });
     }
 
-    pagination();
+    // Configure pagination
+    initPagination();
+
 });

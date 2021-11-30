@@ -11,7 +11,7 @@ const seller = new Schema({
 })
 const category = new Schema({
     name:{type: String,required: true},
-    category:{type:mongoose.Schema.Types.ObjectId,ref:"Category"}
+    categoryId:{type:mongoose.Schema.Types.ObjectId,ref:"Category"}
 })
 // create schema
 const Property = new Schema(

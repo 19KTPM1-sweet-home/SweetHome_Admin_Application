@@ -32,3 +32,10 @@ module.exports.loadProperties = (propertiesPerPage, currentPage) => {
             });
     })
 }
+
+module.exports.addNewProperty = (newProperty) => {
+    // return new Promise((resolve, reject) => {
+        
+    // })
+    return 2;
+}
