@@ -3,6 +3,6 @@ const router = express.Router();
 
 const propertyController = require('../controllers/propertyController');
 
-router.get('/', propertyController.show);
+router.get('/page/:currentPage', propertyController.loadProperties);
 
 module.exports = router;
