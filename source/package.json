@@ -12,13 +12,15 @@
     "debug": "~2.6.9",
     "dotenv": "^10.0.0",
     "express": "~4.16.1",
+    "fs-extra": "^10.0.0",
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
     "mongoose": "^6.0.13",
     "mongoose-delete": "^0.5.4",
     "mongoose-slug-generator": "^1.0.4",
     "morgan": "~1.9.1",
-    "multer": "^1.4.3"
+    "multer": "^1.4.3",
+    "slugify": "^1.6.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.15",
