@@ -19,13 +19,12 @@ $(window).on('load', () => {
             },
             success: function(res){
                  // Show success modal
-                 window.location.reload();
-                //   $('#successModal').modal('show');
-                //   // Hide loading spinner
-                //   $('.spanner').removeClass('show');
-                //   $('.overlay-spinner').removeClass('show');
-                //   $('#successTitle').text('Success');
-                //   $('#successMsg').text('Property has added to database');
+                  $('#successModal').modal('show');
+                  // Hide loading spinner
+                  $('.spanner').removeClass('show');
+                  $('.overlay-spinner').removeClass('show');
+                  $('#successTitle').text('Success');
+                  $('#successMsg').text('Property has added to database');
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
                if(errorThrown) {
@@ -60,14 +59,13 @@ $(window).on('load', () => {
                   $('#editPropertyModal').modal('hide');
             },
             success: function(res){
-                window.location.reload();
                  // Show success modal
-                //   $('#successModal').modal('show');
-                //   // Hide loading spinner
-                //   $('.spanner').removeClass('show');
-                //   $('.overlay-spinner').removeClass('show');
-                //   $('#successTitle').text('Success');
-                //   $('#successMsg').text('Property has updated in the database');
+                  $('#successModal').modal('show');
+                  // Hide loading spinner
+                  $('.spanner').removeClass('show');
+                  $('.overlay-spinner').removeClass('show');
+                  $('#successTitle').text('Success');
+                  $('#successMsg').text('Property has updated in the database');
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
                if(errorThrown) {

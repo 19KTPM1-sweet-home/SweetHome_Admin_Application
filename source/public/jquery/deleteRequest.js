@@ -16,18 +16,13 @@ $(window).on('load', () => {
                 $('#deleteModal').modal('hide');
             },
             success: function(res){
-                // // Reload current table page after delete
-                // const currentPage = await $('.paging-wrapper').pagination('getCurrentPage');
-                // loadPropertiesPerPage(currentPage);
-                // console.log('hello' + currentPage);
-                window.location.reload();
-                // // Show success modal
-                // $('#successModal').modal('show');
-                // // Hide loading spinner
-                // $('.spanner').removeClass('show');
-                // $('.overlay-spinner').removeClass('show');
-                // $('#successTitle').text('Success');
-                // $('#successMsg').text('Property has deleted in the database');
+                 // Show success modal
+                $('#successModal').modal('show');
+                // Hide loading spinner
+                $('.spanner').removeClass('show');
+                $('.overlay-spinner').removeClass('show');
+                $('#successTitle').text('Success');
+                $('#successMsg').text('Property has deleted in the database');
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
                if(errorThrown) {
