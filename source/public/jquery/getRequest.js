@@ -37,12 +37,12 @@ $(window).on('load', function () {
                         <div class="status-col">${property.status}</div>
                     </td>
                     <td>
-                        <div class="action-col">
-                            <a href="javascript:void()" class="mr-4" data-toggle="tooltip"
-                                data-placement="top" title="Edit"><i
+                        <div id="${property._id}" class="action-col">
+                            <a id="editPropertyBtn" href="javascript:void(0)" class="mr-4"
+                                title="Edit"><i
                                     class="fa fa-pencil color-muted"></i> </a>
-                            <a href="javascript:void()" data-toggle="tooltip"
-                                data-placement="top" title="Close"><i
+                            <a id="deletePropertyBtn" href="javascript:void(0)"
+                                title="Close"><i
                                     class="fa fa-close color-danger"></i></a>
                         </div>
                     </td>

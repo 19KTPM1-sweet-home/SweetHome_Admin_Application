@@ -45,6 +45,8 @@ $(window).on('load', () => {
         $('#addPropertyModal').modal('hide');
     });
 
+
+    // ------- SUCCESS MODAL EVENT --------
     // Close success modal
     $("#success-modal-btn").click(function (e) { 
         e.preventDefault();
@@ -52,11 +54,35 @@ $(window).on('load', () => {
         $('#successModal').modal('hide');
     });
 
+    // ------- ERROR MODAL EVENT --------
     // Close error modal
     $("#error-modal-btn").click(function (e) { 
         e.preventDefault();
         $(this).removeAttr("href");
         $('#errorModal').modal('hide');
+    });
+
+    // ------- DELETE MODAL EVENT --------
+    // Open delete modal
+    $(document).on( 'click', '#deletePropertyBtn', function (e) { 
+        e.preventDefault();
+        $(this).removeAttr("href");
+        $('#deleteModal').modal('show');
+        $('#delete-modal-delete-btn').addClass($(this).parent().attr('id'));
+    });
+
+    // Close delete modal
+    $(document).on( 'click', '#delete-modal-cancel-btn', function (e) { 
+        e.preventDefault();
+        $(this).removeAttr("href");
+        $('#deleteModal').modal('hide');
+    });
+
+    // Close delete modal
+    $(document).on( 'click', '#exitDeleteModalBtn', function (e) { 
+        e.preventDefault();
+        $(this).removeAttr("href");
+        $('#deleteModal').modal('hide');
     });
 
 })

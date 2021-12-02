@@ -363,6 +363,7 @@
             </div>
         </div>
 
+        {{!-- Error modal HTML --}}
         <div id="errorModal" class="modal fade">
             <div class="modal-dialog modal-confirm">
                 <div class="modal-content">
@@ -376,7 +377,32 @@
                         <p id="errorMsg" class="text-center">Your transaction has failed. Please go back and try again.</p>
                     </div>
                     <div class="modal-footer">
-                        <button id="error-modal-btn" class="btn btn-danger btn-block" data-dismiss="modal">OK</button>
+                        <button id="error-modal-btn" class="btn btn-danger btn-block">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{!-- Delete modal HTML --}}
+        </div>
+
+        <!-- Modal HTML -->
+        <div id="deleteModal" class="modal fade">
+            <div class="modal-dialog modal-confirm">
+                <div class="modal-content">
+                    <div class="modal-header flex-column">
+                        <div class="delete-icon-box">
+                            <i class="material-icons">&#xE5CD;</i>
+                        </div>						
+                        <h4 class="modal-title w-100">Are you sure?</h4>	
+                        <button id="exitDeleteModalBtn" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Do you really want to delete these records? This process cannot be undone.</p>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button id="delete-modal-cancel-btn" type="button" class="btn btn-secondary">Cancel</button>
+                        <button id="delete-modal-delete-btn" type="button" class="btn btn-danger">Delete</button>
                     </div>
                 </div>
             </div>
