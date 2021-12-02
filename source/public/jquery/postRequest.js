@@ -19,12 +19,13 @@ $(window).on('load', () => {
             },
             success: function(res){
                  // Show success modal
-                  $('#successModal').modal('show');
-                  // Hide loading spinner
-                  $('.spanner').removeClass('show');
-                  $('.overlay-spinner').removeClass('show');
-                  $('#successTitle').text('Success');
-                  $('#successMsg').text('Property has added to database');
+                 window.location.reload();
+                //   $('#successModal').modal('show');
+                //   // Hide loading spinner
+                //   $('.spanner').removeClass('show');
+                //   $('.overlay-spinner').removeClass('show');
+                //   $('#successTitle').text('Success');
+                //   $('#successMsg').text('Property has added to database');
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
                if(errorThrown) {
