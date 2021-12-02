@@ -272,7 +272,7 @@ module.exports.editProperty = (propertyId, editProperty) => {
         // }
 
         // Find and update property in database
-        propertyModel.findOneAndUpdate(propertyId, tmpProperty, {upsert:true}, (err) => {
+        propertyModel.findOneAndUpdate({ _id: propertyId }, tmpProperty, {upsert:true}, (err) => {
             if (err) {
                 reject(err);
                 console.error(err);
