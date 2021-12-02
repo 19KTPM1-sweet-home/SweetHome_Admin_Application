@@ -13,6 +13,11 @@ class propertyController {
         const ack = await propertyService.addNewProperty(req.files.inputPreviewImage, req.files.inputDetailImage, req.body);
         res.send(JSON.stringify({response: ack}));
     }
+
+    async deleteProperty(req, res) {
+        const ack = await propertyService.deleteProperty(req.params.id);
+        res.send(JSON.stringify({response: ack}));
+    }
 }
 
 module.exports = new propertyController();

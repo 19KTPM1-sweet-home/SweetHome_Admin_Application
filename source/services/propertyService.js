@@ -178,3 +178,15 @@ module.exports.addNewProperty = (previewImage, detailImages, newProperty) => {
         });
     })
 }
+
+module.exports.deleteProperty = (propertyId) => {
+    return new Promise(async (resolve, reject) => {
+        propertyModel.deleteOne({ _id: propertyId }, function (err) {
+            if(err) {
+                console.log(err);
+                reject(err);
+            }
+            resolve('success');
+        });
+    });
+}
