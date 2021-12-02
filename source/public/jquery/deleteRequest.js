@@ -6,7 +6,7 @@ $(window).on('load', () => {
         const propertyId = $(this).attr('class').split(' ')[2];
         $.ajax({
             type: "DELETE",
-            url: "http://localhost:3000/property/delete/" + propertyId,
+            url: "https://sweet-home-admin-19ktpm1.herokuapp.com/property/delete/" + propertyId,
             processData: false,
             contentType: false,
             beforeSend: function(){
@@ -21,13 +21,13 @@ $(window).on('load', () => {
                 // loadPropertiesPerPage(currentPage);
                 // console.log('hello' + currentPage);
                 window.location.reload();
-                // Show success modal
-                $('#successModal').modal('show');
-                // Hide loading spinner
-                $('.spanner').removeClass('show');
-                $('.overlay-spinner').removeClass('show');
-                $('#successTitle').text('Success');
-                $('#successMsg').text('Property has deleted in the database');
+                // // Show success modal
+                // $('#successModal').modal('show');
+                // // Hide loading spinner
+                // $('.spanner').removeClass('show');
+                // $('.overlay-spinner').removeClass('show');
+                // $('#successTitle').text('Success');
+                // $('#successMsg').text('Property has deleted in the database');
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
                if(errorThrown) {

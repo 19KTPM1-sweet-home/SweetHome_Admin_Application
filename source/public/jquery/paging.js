@@ -3,7 +3,7 @@ const propertiesPerPage = 5;
 const defaultTotalPages = 10;
 
 function loadPropertiesPerPage(currentPage) {
-    const url = 'http://localhost:3000/property/page/' + currentPage.toString();
+    const url = 'https://sweet-home-admin-19ktpm1.herokuapp.com/property/page/' + currentPage.toString();
     $.get(url, function (data) {
         // parameter: data = {
         //     properties: array of properties

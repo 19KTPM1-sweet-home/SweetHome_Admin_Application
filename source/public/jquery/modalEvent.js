@@ -85,4 +85,87 @@ $(window).on('load', () => {
         $('#deleteModal').modal('hide');
     });
 
+    // ------- EDIT A PROPERTY MODAL EVENT --------
+
+    // add new feature button click event
+    $("#editPropertyModal #edit-add-new-feature-btn").click(function (e) { 
+        e.preventDefault();
+        $(this).removeAttr("href");
+        const template = `
+            <div class="feature-input">
+                <div class="d-flex align-item-center">
+                    <input type="text" class="form-control" name="propertyFeature" style="width: 70%;" required>
+                    <div id="delete-feature-btn">
+                        <a href="#" onclick="parentElement.parentElement.parentElement.remove();" title="Close">
+                            <i class="fa fa-close color-danger"></i>
+                        </a>
+                    </div>
+                </div>
+                <br>
+            </div>`;
+
+        const container = $("#editFeatureList");
+        container.append(template);
+    });
+
+    // Open edit property modal
+    $(document).on( 'click', '#editPropertyBtn', function (e) { 
+        e.preventDefault();
+        $(this).removeAttr("href");
+        $('#editPropertyModal').modal('show');
+        $('#editForm').addClass($(this).parent().attr('id'));
+        
+        const url = 'https://sweet-home-admin-19ktpm1.herokuapp.com/property/' + $('#editForm').attr('class').split(' ')[2];
+        $.get(url, function (property) {
+           $('#editForm #editPropertyName').val(property.name);
+           $('#editForm #editCategory').val(property.category.name);
+           $('#editForm #editAddress').val(property.address);
+           $('#editForm #editDescription').val(property.description);
+           $('#editForm #editPrice').val(property.price);
+           $('#editForm #editRate').val(property.rate);
+           $('#editForm #editStatus').val(property.status);
+
+           $('#editForm #feature-1').val(property.feature[0]);
+           for(let i = 1; i < property.feature.length; i++) {
+               const featureId = 'feature-' + i.toString();
+               const template = `
+                   <div class="feature-input">
+                       <div class="d-flex align-item-center">
+                           <input id="${featureId}" type="text" class="form-control" name="propertyFeature" style="width: 70%;" required>
+                           <div id="delete-feature-btn">
+                               <a href="#" onclick="parentElement.parentElement.parentElement.remove();" title="Close">
+                                   <i class="fa fa-close color-danger"></i>
+                               </a>
+                           </div>
+                       </div>
+                       <br>
+                   </div>`;
+
+               const container = $("#editForm #editFeatureList");
+               container.append(template);
+               const selector = '#editForm' + ' #' + featureId
+               $(selector).val(property.feature[i]);
+           }
+           $('#editForm #editSellerName').val(property.seller.name);
+           $('#editForm #editSellerEmail').val(property.seller.email);
+           if(property.seller.phoneNumber)
+               $('#editForm #editSellerPhoneNumber').val(property.seller.phoneNumber); 
+        });
+    });
+
+    // Clear form input and close add new property modal when click cancel button
+    $("#editPropertyModal #cancelEditFormBtn").click(function (e) { 
+        e.preventDefault();
+        $(this).removeAttr("href");
+        $('#editForm').removeClass($('#editForm')[0].classList[2]);
+        $('#editPropertyModal').modal('hide');
+    });
+
+    // Clear form input and close add new property modal when click cancel button
+    $("#editPropertyModal #editCancelFormBtn").click(function (e) { 
+        e.preventDefault();
+        $(this).removeAttr("href");
+        $('#editForm').removeClass($('#editForm')[0].classList[2]);
+        $('#editPropertyModal').modal('hide');
+    });
 })

@@ -47,6 +47,18 @@ module.exports.loadProperties = (propertiesPerPage, currentPage) => {
     })
 }
 
+module.exports.loadProperty = (propertyId) => {
+    return new Promise((resolve, reject) => {
+        propertyModel.findById(propertyId, function (err, property) {
+            if(err) {
+                console.log(err);
+                reject(err);
+            }
+            resolve(property);
+        });
+    });
+}
+
 async function generateUniqueSlug(model, field) {
     return new Promise((resolve, reject) => {
         const slug = uniqid((slugify(model[field], {lower:true, locale: 'vi'}) + '-'));
@@ -189,4 +201,83 @@ module.exports.deleteProperty = (propertyId) => {
             resolve('success');
         });
     });
+}
+
+module.exports.editProperty = (propertyId, editProperty) => {
+    // ---------PARAMETER---------
+    // previewImage: array contains preview image of property (just 1 image)
+    // detailImages: array contains detail images of property
+    // editProperty: object other data of property (in text)
+    return new Promise(async (resolve, reject) => {
+        // Create seller object with data in POST request
+        const tmpSeller = {
+            name: editProperty.sellerName,
+            email: editProperty.sellerEmail,
+        };
+        if(editProperty.sellerPhoneNumber != '')
+            tmpSeller["phoneNumber"] = editProperty.sellerPhoneNumber;
+
+
+        // Get category objectID from database
+        const categoryObjectId = await getCategoryIdByName(editProperty.propertyCategory);
+        // Create category object with data in POST request
+        const tmpCategory = {
+            name: editProperty.propertyCategory,
+            categoryId: mongoose.Types.ObjectId(categoryObjectId)
+        };
+        
+
+        // Create a temp property to be saved to database with data in POST request
+        const tmpProperty = {
+            name: editProperty.propertyName,
+            address: editProperty.propertyAddress,
+            description: editProperty.propertyDescription,
+            feature: editProperty.propertyFeature,
+            price: editProperty.propertyPrice,
+            seller: tmpSeller,
+            rate: editProperty.propertyRate,
+            status: editProperty.propertyStatus,
+            category: tmpCategory,
+        };
+
+
+        // Generate slug from property name, language: vi
+        const slugGenerateField = 'name';
+        const slug = await generateUniqueSlug(tmpProperty, slugGenerateField);
+
+        // if(previewImage) {
+        //     // Base paths to store uploaded images
+        //     const baseForPreview = 'sweet-home/images/property/' + slug + '/preview/';
+
+        //     // Generate upload path for preview and detail images
+        //     const previewPath = await generateUploadPath(baseForPreview, previewImage, slug, "preview");
+
+        //     // Save generated paths to model
+        //     var previewImgUrls = [];
+        //     previewImgUrls = await uploadImageToCloud(previewPath, previewImage);
+        //     tmpProperty['previewImage'] = previewImgUrls[0];
+        // }
+        
+        // if(detailImages) {
+        //     // Base paths to store uploaded images
+        //     const baseForDetail = 'sweet-home/images/property/' + slug + '/detail/';
+
+        //     // Generate upload path for preview and detail images
+        //     const detailPaths = await generateUploadPath(baseForDetail, detailImages, slug, "detail");
+
+        //     // Save generated paths to model
+        //     var detailImgUrls = [];
+        //     detailImgUrls = await uploadImageToCloud(detailPaths, detailImages);
+        //     tmpProperty['detailImage'] = detailImgUrls;
+        // }
+
+        // Find and update property in database
+        propertyModel.findOneAndUpdate(propertyId, tmpProperty, {new: true}, (err) => {
+            if (err) {
+                reject(err);
+                console.error(err);
+            }
+            resolve('success'); // ACK msg
+        });
+    })
 }

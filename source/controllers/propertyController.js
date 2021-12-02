@@ -9,6 +9,12 @@ class propertyController {
         res.send(properties);
     }
 
+    async loadProperty(req, res) {
+        console.log('req: ' + req.params.id);
+        const property = await propertyService.loadProperty(req.params.id);
+        res.send(property);
+    }
+
     async addNewProperty(req, res) {
         const ack = await propertyService.addNewProperty(req.files.inputPreviewImage, req.files.inputDetailImage, req.body);
         res.send(JSON.stringify({response: ack}));
@@ -18,6 +24,12 @@ class propertyController {
         const ack = await propertyService.deleteProperty(req.params.id);
         res.send(JSON.stringify({response: ack}));
     }
+
+    async editProperty(req, res) {
+        const ack = await propertyService.editProperty(req.params.id, req.body);
+        res.send(JSON.stringify({response: ack}));
+    }
+
 }
 
 module.exports = new propertyController();
