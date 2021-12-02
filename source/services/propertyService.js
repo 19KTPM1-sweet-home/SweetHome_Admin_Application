@@ -6,6 +6,7 @@ const slugify = require('slugify');
 const uniqid = require('uniqid');
 const cloudinary = require('cloudinary').v2;
 const streamifier = require('streamifier');
+const Category = require('../models/Category');
 
 // --------CLOUDINARY SETUP---------
 cloudinary.config({
@@ -66,6 +67,28 @@ async function generateUniqueSlug(model, field) {
         model.slug = slug;
         resolve(slug);
     });
+}
+
+
+async function addNewPropertyToCategoryCollection(categoryId,propertyId){
+    return new Promise(async (resolve, reject) => {
+        categoryModel.findOne({_id:categoryId})
+        .then((category)=>{
+            let newProperties = mongooseToObject(category).properties
+            newProperties.push(mongoose.Types.ObjectId(propertyId));
+            categoryModel.updateOne({_id:categoryId},{properties:newProperties})
+            .then(()=>{
+                resolve('success')
+            })
+            .catch((error) => {
+                reject(error);
+            })
+        })
+        .catch((error) => {
+            reject(error);
+        })
+        
+    })
 }
 
 async function getCategoryIdByName(categoryName) {
@@ -180,14 +203,17 @@ module.exports.addNewProperty = (previewImage, detailImages, newProperty) => {
         detailImgUrls = await uploadImageToCloud(detailPaths, detailImages);
         newPropertyModel.previewImage = previewImgUrls[0];
         newPropertyModel.detailImage = detailImgUrls;
-
         // Save model to database
-        newPropertyModel.save(async (err) => {
+        newPropertyModel.save((err,doc) => {
             if (err) {
                 reject(err);
                 console.error(err);
             }
-            resolve('success'); // ACK msg
+            else{
+                newPropertyId = doc._id.toString();
+                addNewPropertyToCategoryCollection(categoryObjectId,newPropertyId);
+                resolve('success'); // ACK msg
+            }
         });
     })
 }
