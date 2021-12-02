@@ -13,20 +13,25 @@
     Preloader end
 ********************-->
 
-
+<div class="overlay-spinner"></div>
+{{!-- Spinner Loading--}}
+<div class="spanner">
+  <div class="loader"></div>
+  <p>LOADING...</p>
+</div>
 <!--**********************************
     Main wrapper start
 ***********************************-->
 <div id="main-wrapper">
 
     <!--**********************************
-        Nav header start
+        Nav header start./images/property/preview/asd-my7bu6vokwobzeja-preview-0.jpeg
     ***********************************-->
     <div class="nav-header">
         <a href="#" class="brand-logo">
-            <img class="logo-abbr" src="./images/logo.png" alt="">
-            <img class="logo-compact" src="./images/logo-text.png" alt="">
-            <img class="brand-title" src="./images/logo-text.png" alt="">
+            <img class="logo-abbr" src="https://res.cloudinary.com/dq4xoyzib/image/upload/v1638422871/sweet-home/images/property/test-nha-1-my7budp4kwoioae2/preview/test-nha-1-my7budp4kwoioae2-preview-0.jpg" alt="">
+            <img class="logo-compact" src="https://res.cloudinary.com/dq4xoyzib/image/upload/v1638422871/sweet-home/images/property/test-nha-1-my7budp4kwoioae2/preview/test-nha-1-my7budp4kwoioae2-preview-0.jpg" alt="">
+            <img class="brand-title" src="https://res.cloudinary.com/dq4xoyzib/image/upload/v1638422871/sweet-home/images/property/test-nha-1-my7budp4kwoioae2/preview/test-nha-1-my7budp4kwoioae2-preview-0.jpg" alt="">
         </a>
 
         <div class="nav-control">
@@ -186,7 +191,7 @@
                         <div class="card-header">
                             <h4 class="card-title">Properties</h4>
                             <div class="success-btn-wrapper">
-                                <a href="#addPropertyModal" class="btn btn-success" data-toggle="modal"><i class="fa fa-plus"></i> <span>Add New Property</span></a>						
+                                <a id="addNewPropertyBtn" class="btn btn-success"><i class="fa fa-plus"></i> <span>Add New Property</span></a>						
                             </div>
                         </div>
                         <div class="card-body">
@@ -194,13 +199,13 @@
                                 <table class="table table-bordered verticle-middle table-responsive-sm">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Category</th>
-                                            <th scope="col">Address</th>
-                                            <th scope="col">Seller</th>
-                                            <th scope="col">Price</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col">Action</th>
+                                            <th class="name-col" scope="col">Name</th>
+                                            <th class="category-col" scope="col">Category</th>
+                                            <th class="address-col" scope="col">Address</th>
+                                            <th class="seller-col" scope="col">Seller</th>
+                                            <th class="price-col" scope="col">Price</th>
+                                            <th class="status-col" scope="col">Status</th>
+                                            <th class="action-col" scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody class="table-body">
@@ -223,7 +228,7 @@
                 <div class="modal-content">
                     <div class="modal-header">						
                         <h4 class="modal-title">Add Property</h4>
-                        <button type="button" id="cancelFormBtn" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <button type="button" id="cancelFormBtn" class="close" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body">					
                         <form id="addForm" class="row g-3" enctype="multipart/form-data">
@@ -330,14 +335,55 @@
                         
                             <div class="modal-footer">
                                 <input type="button" id="cancelFormBtn" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                <input type="submit" class="btn btn-success" value="Add">
+                                <input type="submit" id="confirmFormBtn" class="btn btn-success confirm-btn" value="Confirm">
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Success Modal HTML -->
+        <div id="successModal" class="modal fade">
+            <div class="modal-dialog modal-confirm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="icon-box">
+                            <i class="fa fa-check"></i>
+                        </div>				
+                        <h4 id="successTitle" class="modal-title w-100">Success</h4>	
+                    </div>
+                    <div class="modal-body">
+                        <div id="successMsg" class="text-center">Property has added to database.</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="success-modal-btn" class="btn btn-success btn-block" >OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="errorModal" class="modal fade">
+            <div class="modal-dialog modal-confirm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="icon-box">
+                            <i class="material-icons">&#xE5CD;</i>
+                        </div>				
+                        <h4 id="errorTitle" class="modal-title w-100">Sorry!</h4>	
+                    </div>
+                    <div class="modal-body">
+                        <p id="errorMsg" class="text-center">Your transaction has failed. Please go back and try again.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="error-modal-btn" class="btn btn-danger btn-block" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+
     <!--**********************************
         Content body end
     ***********************************-->

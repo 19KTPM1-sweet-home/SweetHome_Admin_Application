@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 // add slug generator plugin to mongoose
 const slug = require('mongoose-slug-generator');
-// add slug generator plugin to mongoose
 const mongooseDelete = require('mongoose-delete');
 // create schema
 const Category = new Schema(

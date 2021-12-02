@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-// add slug generator plugin to mongoose
-const slug = require('mongoose-slug-generator');
 const mongooseDelete = require('mongoose-delete');
 
 // create schema
@@ -25,7 +23,7 @@ const Property = new Schema(
             categoryId:{type:mongoose.Schema.Types.ObjectId,ref:"Category"}
         },
         detailImage:[{type:String},],
-        slug: {type: String, slug: 'name', unique: true},
+        slug: {type: String}
     },
     {
         // assign createAt and updateAt fields to Schema 
@@ -38,8 +36,6 @@ Property.plugin(mongooseDelete, {
     deletedAt: true,
     overrideMethods: 'all',
 });
-// add plugin
-mongoose.plugin(slug);
 
 // create models and export it
 module.exports = mongoose.model('Property', Property);
