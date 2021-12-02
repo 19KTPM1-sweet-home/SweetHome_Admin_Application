@@ -2,12 +2,13 @@ $(window).on('load', () => {
     // Add property on submitted
     $( "#addForm" ).submit(function( event ) {
         event.preventDefault();
-        
+        const origin   = window.location.origin;
+        const url = origin + '/property';
 
         const formData = new FormData($("#addForm")[0]);
         $.ajax({
             type: "POST",
-            url: "https://sweet-home-admin-19ktpm1.herokuapp.com/property/add",
+            url: url +"/add",
             data: formData,
             processData: false,
             contentType: false,
@@ -48,7 +49,7 @@ $(window).on('load', () => {
         const formData = new FormData($("#editForm")[0]);
         $.ajax({
             type: "POST",
-            url: "https://sweet-home-admin-19ktpm1.herokuapp.com/property/edit/" + propertyId,
+            url: url+"/edit/" + propertyId,
             data: formData,
             processData: false,
             contentType: false,

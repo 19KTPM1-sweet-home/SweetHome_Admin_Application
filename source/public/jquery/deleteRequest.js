@@ -3,10 +3,12 @@ $(window).on('load', () => {
     $(document).on( 'click', '#delete-modal-delete-btn', function (e) { 
         e.preventDefault();
         $(this).removeAttr("href");
+        const origin   = window.location.origin;
+        const url = origin + '/property';
         const propertyId = $(this).attr('class').split(' ')[2];
         $.ajax({
             type: "DELETE",
-            url: "https://sweet-home-admin-19ktpm1.herokuapp.com/property/delete/" + propertyId,
+            url: url+"/delete/" + propertyId,
             processData: false,
             contentType: false,
             beforeSend: function(){

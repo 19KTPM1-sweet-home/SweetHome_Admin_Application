@@ -6,8 +6,8 @@ const mongooseDelete = require('mongoose-delete');
 // create schema
 const Category = new Schema(
     {
-        seller: {type: String, required: true},
-        property:[{type:mongoose.Schema.Types.ObjectId,ref:'Property'},],
+        name: {type: String, required: true},
+        properties:[{type:mongoose.Schema.Types.ObjectId,ref:'Property'},],
         slug: {type: String, slug: 'name', unique: true},
     },
     {

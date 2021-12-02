@@ -1,10 +1,11 @@
 // --------------DEFAULT VALUE OF PAGINATION-----------------
 const propertiesPerPage = 5;
 const defaultTotalPages = 10;
-
+const origin   = window.location.origin;
+const url = origin + '/property/page/';
 function loadPropertiesPerPage(currentPage) {
-    const url = 'https://sweet-home-admin-19ktpm1.herokuapp.com/property/page/' + currentPage.toString();
-    $.get(url, function (data) {
+    const fulUrl = url + currentPage.toString();
+    $.get(fulUrl, function (data) {
         // parameter: data = {
         //     properties: array of properties
         //     count: total properties in db

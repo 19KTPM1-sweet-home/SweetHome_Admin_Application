@@ -1,5 +1,6 @@
 const propertyModel = require('../models/Property');
 const categoryModel = require('../models/Category');
+const { mongooseToObject } = require('../util/mongoose');
 const mongoose = require('mongoose');
 const slugify = require('slugify');
 const uniqid = require('uniqid');
@@ -74,7 +75,7 @@ async function getCategoryIdByName(categoryName) {
                 console.log(err);
                 reject(err);
             }
-            resolve(category._id);
+            resolve(mongooseToObject(category)._id.toString());
         });
     });
 }
