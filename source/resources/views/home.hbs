@@ -239,11 +239,11 @@
                             </div>
                             <div class="col-md-6 form-group">
                               <label for="inputPropertyName" class="form-label">Property name</label>
-                              <input type="text" class="form-control" id="inputPropertyName" name="propertyName" value="">
+                              <input type="text" class="form-control" id="inputPropertyName" name="propertyName" value="" required>
                             </div>
                             <div class="col-md-6">
                               <label for="inputCategory" class="form-label">Category</label>
-                              <select id="inputCategory" class="form-select" name="propertyCategory">
+                              <select id="inputCategory" class="form-select" name="propertyCategory" required>
                                 <option value="" disabled selected>Select your option</option>
                                 <option value="House">House</option>
                                 <option value="Apartment">Apartment</option>
@@ -253,25 +253,25 @@
                             </div>
                             <div class="col-12">
                               <label for="inputAddress" class="form-label">Address</label>
-                              <input type="text" class="form-control" id="inputAddress" name="propertyAddress">
+                              <input type="text" class="form-control" id="inputAddress" name="propertyAddress" required>
                             </div>
                             <div class="col-12">
                               <label for="inputDescription" class="form-label">Description</label>
-                              <textarea class="form-control" id="inputDescription" name="propertyDescription"></textarea>
+                              <textarea class="form-control" id="inputDescription" name="propertyDescription" required></textarea>
                             </div>
                             <div class="col-md-6">
                               <label for="inputPrice" class="form-label">Price</label>
-                              <input type="number" class="form-control" id="inputPrice" min="0" max="1000000000000" name="propertyPrice">
+                              <input type="number" class="form-control" id="inputPrice" min="0" max="1000000000000" name="propertyPrice" required>
                             </div>
 
                             <div class="col-md-6">
                               <label for="inputRate" class="form-label">Rate</label>
-                              <input type="number" class="form-control" id="inputRate" min="1" max="5" name="propertyRate">
+                              <input type="number" class="form-control" id="inputRate" min="1" max="5" name="propertyRate" required>
                             </div>
 
                             <div class="col-md-6">
                               <label for="inputStatus" class="form-label">Status</label>
-                              <select id="inputStatus" class="form-select" name="propertyStatus">
+                              <select id="inputStatus" class="form-select" name="propertyStatus" required>
                                 <option value="" disabled selected>Select your option</option>
                                 <option value="For Sale">For Sale</option>
                                 <option value="Sold Out">Sold Out</option>
@@ -286,7 +286,7 @@
 
                             <div id="featureList" class="col-12">
                                 <div class="d-flex align-item-center">
-                                    <input type="text" class="form-control" name="propertyFeature" style="width: 70%;">                         
+                                    <input type="text" class="form-control" name="propertyFeature" style="width: 70%;" required>                         
                                 </div>
                                 <br>
                             </div>
@@ -306,12 +306,12 @@
 
                             <div class="col-md-6 form-group">
                               <label for="inputSellerName" class="form-label">Seller name</label>
-                              <input type="text" class="form-control" id="inputSellerName" name="sellerName">
+                              <input type="text" class="form-control" id="inputSellerName" name="sellerName" required>
                             </div>
 
                             <div class="col-md-6 form-group">
                               <label for="inputSellerEmail" class="form-label">Email</label>
-                              <input type="email" class="form-control" id="inputSellerEmail" placeholder="Ex: abc@gmail.com" name="sellerEmail">
+                              <input type="email" class="form-control" id="inputSellerEmail" placeholder="Ex: abc@gmail.com" name="sellerEmail" required>
                             </div>
 
                             <div class="col-md-6 form-group">
@@ -326,11 +326,11 @@
                             </div>
                             <div class="col-md-12 form-group">
                                 <label for="inputPreviewImage">Select preview image (just choose one image):</label>
-                                <input type="file" id="inputPreviewImage" name="inputPreviewImage">
+                                <input type="file" id="inputPreviewImage" name="inputPreviewImage" required>
                             </div>
                             <div class="col-md-12 form-group">
                                 <label for="inputDetailImage">Select detail image (you can choose multiple images):</label>
-                                <input type="file" id="inputDetailImage" name="inputDetailImage" multiple>
+                                <input type="file" id="inputDetailImage" name="inputDetailImage" multiple required>
                             </div>
                             {{!-- END PROPERTY IMAGE --}}
                         
@@ -360,11 +360,11 @@
                             </div>
                             <div class="col-md-6 form-group">
                               <label for="editPropertyName" class="form-label">Property name</label>
-                              <input type="text" class="form-control" id="editPropertyName" name="propertyName" value="">
+                              <input type="text" class="form-control" id="editPropertyName" name="propertyName" value="" required>
                             </div>
                             <div class="col-md-6">
                               <label for="editCategory" class="form-label">Category</label>
-                              <select id="editCategory" class="form-select" name="propertyCategory">
+                              <select id="editCategory" class="form-select" name="propertyCategory" required>
                                 <option value="" disabled selected>Select your option</option>
                                 <option value="House">House</option>
                                 <option value="Apartment">Apartment</option>
@@ -374,25 +374,25 @@
                             </div>
                             <div class="col-12">
                               <label for="editAddress" class="form-label">Address</label>
-                              <input type="text" class="form-control" id="editAddress" name="propertyAddress">
+                              <input type="text" class="form-control" id="editAddress" name="propertyAddress" required>
                             </div>
                             <div class="col-12">
                               <label for="editDescription" class="form-label">Description</label>
-                              <textarea class="form-control" id="editDescription" name="propertyDescription"></textarea>
+                              <textarea class="form-control" id="editDescription" name="propertyDescription" required></textarea>
                             </div>
                             <div class="col-md-6">
                               <label for="editPrice" class="form-label">Price</label>
-                              <input type="number" class="form-control" id="editPrice" min="0" max="1000000000000" name="propertyPrice">
+                              <input type="number" class="form-control" id="editPrice" min="0" max="1000000000000" name="propertyPrice" required>
                             </div>
 
                             <div class="col-md-6">
                               <label for="editRate" class="form-label">Rate</label>
-                              <input type="number" class="form-control" id="editRate" min="1" max="5" name="propertyRate">
+                              <input type="number" class="form-control" id="editRate" min="1" max="5" name="propertyRate" required>
                             </div>
 
                             <div class="col-md-6">
                               <label for="editStatus" class="form-label">Status</label>
-                              <select id="editStatus" class="form-select" name="propertyStatus">
+                              <select id="editStatus" class="form-select" name="propertyStatus" required>
                                 <option value="" disabled selected>Select your option</option>
                                 <option value="For Sale">For Sale</option>
                                 <option value="Sold Out">Sold Out</option>
@@ -407,7 +407,7 @@
 
                             <div id="editFeatureList" class="col-12">
                                 <div class="d-flex align-item-center">
-                                    <input id="feature-1" type="text" class="form-control" name="propertyFeature" style="width: 70%;">                         
+                                    <input id="feature-1" type="text" class="form-control" name="propertyFeature" style="width: 70%;" required>                         
                                 </div>
                                 <br>
                             </div>
@@ -427,17 +427,17 @@
 
                             <div class="col-md-6 form-group">
                               <label for="editSellerName" class="form-label">Seller name</label>
-                              <input type="text" class="form-control" id="editSellerName" name="sellerName">
+                              <input type="text" class="form-control" id="editSellerName" name="sellerName" required>
                             </div>
 
                             <div class="col-md-6 form-group">
                               <label for="editSellerEmail" class="form-label">Email</label>
-                              <input type="email" class="form-control" id="editSellerEmail" placeholder="Ex: abc@gmail.com" name="sellerEmail">
+                              <input type="email" class="form-control" id="editSellerEmail" placeholder="Ex: abc@gmail.com" name="sellerEmail" required>
                             </div>
 
                             <div class="col-md-6 form-group">
                               <label for="editSellerPhoneNumber" class="form-label">Phone number</label>
-                              <input type="tel" class="form-control" id="editSellerPhoneNumber" placeholder="Ex: 0932288755" name="sellerPhoneNumber">
+                              <input type="tel" class="form-control" id="editSellerPhoneNumber" placeholder="Ex: 0932288755" name="sellerPhoneNumber" required>
                             </div>                    
                             {{!-- END SELLER --}}
 
