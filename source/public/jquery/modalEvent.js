@@ -115,8 +115,8 @@ $(window).on('load', () => {
         $(this).removeAttr("href");
         $('#editPropertyModal').modal('show');
         $('#editForm').addClass($(this).parent().attr('id'));
-        
-        const url = 'https://sweet-home-admin-19ktpm1.herokuapp.com/property/' + $('#editForm').attr('class').split(' ')[2];
+        const origin   = window.location.origin;
+        const url = origin + '/property/'+ $('#editForm').attr('class').split(' ')[2];
         $.get(url, function (property) {
            $('#editForm #editPropertyName').val(property.name);
            $('#editForm #editCategory').val(property.category.name);

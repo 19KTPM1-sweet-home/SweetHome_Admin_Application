@@ -1,9 +1,10 @@
 $(window).on('load', () => {
+    const origin   = window.location.origin;
+    const url = origin + '/property';
     // Add property on submitted
     $( "#addForm" ).submit(function( event ) {
         event.preventDefault();
-        const origin   = window.location.origin;
-        const url = origin + '/property';
+        
 
         const formData = new FormData($("#addForm")[0]);
         $.ajax({
