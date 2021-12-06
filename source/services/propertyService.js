@@ -6,7 +6,6 @@ const slugify = require('slugify');
 const uniqid = require('uniqid');
 const cloudinary = require('cloudinary').v2;
 const streamifier = require('streamifier');
-const Category = require('../models/Category');
 
 // --------CLOUDINARY SETUP---------
 cloudinary.config({
