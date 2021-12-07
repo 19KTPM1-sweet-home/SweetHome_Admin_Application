@@ -4,15 +4,11 @@ const Schema = mongoose.Schema;
 const slug = require('mongoose-slug-generator');
 const mongooseDelete = require('mongoose-delete');
 // create schema
-const User = new Schema(
+const Admin = new Schema(
   {
     username: { type: String, unique: true, required: true },
     password: { type: String, required: true },
-    fullName: { type: String, required: true },
-    address: { type: String },
-    favorite: [{ type: Schema.Types.ObjectId, ref: 'Property' }],
-    email: { type: String, unique: true, required: true },
-    schedule: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Schedule' }],
+    fullname: { type: String, required: true },
     slug: { type: String, slug: 'name', unique: true, required: true },
   },
   {
@@ -22,7 +18,7 @@ const User = new Schema(
 );
 
 // add soft delete framework to Schema
-User.plugin(mongooseDelete, {
+Admin.plugin(mongooseDelete, {
   deletedAt: true,
   overrideMethods: 'all',
 });
@@ -30,4 +26,4 @@ User.plugin(mongooseDelete, {
 mongoose.plugin(slug);
 
 // create models and export it
-module.exports = mongoose.model('User', User);
+module.exports = mongoose.model('Admin', Admin);

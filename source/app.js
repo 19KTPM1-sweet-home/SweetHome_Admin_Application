@@ -5,8 +5,14 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const app = express();
 const route = require('./routes');
+const session = require("express-session");
+const passport = require('passport');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+
+
+
+
 
 app.set('view engine', 'hbs');
 
@@ -14,6 +20,12 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+
+//session setup
+app.use(session({ secret: process.env.SESSION_SECRET_STRING, resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/public', express.static('public'))
 
