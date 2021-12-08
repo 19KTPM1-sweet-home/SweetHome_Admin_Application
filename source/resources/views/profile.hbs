@@ -1,0 +1,208 @@
+<!--**********************************
+            Content body start
+        ***********************************-->
+<div class="content-body" style="min-height: 927px;">
+    <div class="container-fluid">
+        <div class="row page-titles mx-0">
+            <div class="col-sm-6 p-md-0">
+                <div class="welcome-text">
+                    <h4>Hi, welcome back!</h4>
+                    <p class="mb-0">Your profile here</p>
+                </div>
+            </div>
+            <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">App</a></li>
+                    <li class="breadcrumb-item active"><a href="javascript:void(0)">Profile</a></li>
+                </ol>
+            </div>
+        </div>
+        <!-- row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="profile">
+                    <div class="profile-head">
+                        <div class="photo-content">
+                            <div class="cover-photo"></div>
+                            <div class="profile-photo">
+                                <img src="../../public/images/profile/profile.png" class="img-fluid rounded-circle"
+                                    alt="">
+                            </div>
+                        </div>
+                        <div class="profile-info">
+                            <div class="row justify-content-center">
+                                <div class="col-xl-8">
+                                    <div class="row">
+                                        <div class="col-xl-4 col-sm-4 border-right-1 prf-col">
+                                            <div class="profile-name">
+                                                <h4 class="text-primary">{{admin.fullname}}</h4>
+                                                <p>{{admin.job}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-sm-4 border-right-1 prf-col">
+                                            <div class="profile-email">
+                                                <h4 class="text-muted">{{admin.email}}</h4>
+                                                <p>Email</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-sm-4 prf-col">
+                                            <div class="profile-call">
+                                                <h4 class="text-muted">{{admin.phoneNumber}}</h4>
+                                                <p>Phone No.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="profile-tab">
+                            <div class="custom-tab-1">
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item "><a href="#about-me" data-toggle="tab" class="nav-link active"
+                                            aria-selected="true">About
+                                            Me</a>
+                                    </li>
+                                    <li class="nav-item"><a href="#profile-settings" data-toggle="tab"
+                                            class="nav-link">Setting</a>
+                                    </li>
+                                    <li class="nav-item"><a href="#account-settings" data-toggle="tab"
+                                            class="nav-link">Security</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div id="about-me" class="tab-pane fade show active">
+                                        <div class="profile-personal-info pt-4 border-bottom-1 pb-4">
+                                            <h4 class="text-primary mb-4">Personal Information</h4>
+                                            <div class="row mb-4">
+                                                <div class="col-3">
+                                                    <h5 class="f-w-500">Name <span class="pull-right">:</span>
+                                                    </h5>
+                                                </div>
+                                                <div class="col-9"><span>{{admin.fullname}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-4">
+                                                <div class="col-3">
+                                                    <h5 class="f-w-500">Email <span class="pull-right">:</span>
+                                                    </h5>
+                                                </div>
+                                                <div class="col-9"><span>{{admin.email}}</span></div>
+                                            </div>
+
+                                            <div class="row mb-4">
+                                                <div class="col-3">
+                                                    <h5 class="f-w-500">Job <span class="pull-right">:</span>
+                                                    </h5>
+                                                </div>
+                                                <div class="col-9"><span>{{admin.job}}</span></div>
+                                            </div>
+
+                                            <div class="row mb-4">
+                                                <div class="col-3">
+                                                    <h5 class="f-w-500">Age <span class="pull-right">:</span>
+                                                    </h5>
+                                                </div>
+                                                <div class="col-9"><span>{{admin.age}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-4">
+                                                <div class="col-3">
+                                                    <h5 class="f-w-500">Location <span class="pull-right">:</span></h5>
+                                                </div>
+                                                <div class="col-9"><span>{{admin.address}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="profile-settings" class="tab-pane fade">
+                                        <div class="pt-3">
+                                            <div class="settings-form">
+                                                <h4 class="text-primary">Profile Setting</h4>
+                                                <form method="POST" action="/profile/{{admin.slug}}/edit">
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-6">
+                                                            <label>Email</label>
+                                                            <input type="email" name="email" value="{{admin.email}}"
+                                                                class="form-control">
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label>Fullname</label>
+                                                            <input type="text" name="fullname" value="{{admin.fullname}}"
+                                                                class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-8">
+                                                            <label>Phone number</label>
+                                                            <input name="phoneNumber" type="text" class="form-control" value="{{admin.phoneNumber}}">
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label>Age</label>
+                                                            <input name="age" type="number" class="form-control" value="{{admin.age}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-6">
+                                                            <label>Address</label>
+                                                            <input type="text" name="address"
+                                                                value="{{admin.address}}"
+                                                                class="form-control">
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label>Job</label>
+                                                            <input name="job" type="text" class="form-control" value="{{admin.job}}">
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <button class="btn btn-primary" type="submit">Save changes</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="account-settings" class="tab-pane fade">
+                                        <div class="pt-3">
+                                            <div class="settings-form">
+                                                <h4 class="text-primary">Change password</h4>
+                                                <form method="POST" action="/login/{{admin.slug}}/change-password">
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-6">
+                                                            <label>Username</label>
+                                                            <input type="email" name="email" value="{{admin.username}}"
+                                                                class="form-control" disabled>
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label>Old Password</label>
+                                                            <input type="password" name="oldPassword" placeholder="Enter old password"
+                                                                class="form-control">
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label>New Password</label>
+                                                            <input type="text" name="newPassword" placeholder="Enter new password"
+                                                                class="form-control">
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label>Confirm New Password</label>
+                                                            <input type="text" name="confirmNewPassword" placeholder="Re-enter new password"
+                                                                class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <button class="btn btn-primary" type="submit">Save changes</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

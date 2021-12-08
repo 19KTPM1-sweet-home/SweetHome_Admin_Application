@@ -2,7 +2,7 @@ class authController {
     //[GET]  /login
     show(req, res) {
         const wrongPassword = req.query['wrong-password'] !== undefined;
-        res.render('login',{wrongPassword});
+        res.render('login',{layout:false, wrongPassword: wrongPassword});
     }
 }
 

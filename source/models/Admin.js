@@ -9,6 +9,13 @@ const Admin = new Schema(
     username: { type: String, unique: true, required: true },
     password: { type: String, required: true },
     fullname: { type: String, required: true },
+    phoneNumber:{type:String},
+    job:{ type: String},
+    age:{type:Number},
+    email:{type:String},
+    address:{type:String},
+    avatar:{type:String},
+    background:{type:String},
     slug: { type: String, slug: 'name', unique: true, required: true },
   },
   {
