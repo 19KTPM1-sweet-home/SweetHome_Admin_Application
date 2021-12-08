@@ -414,6 +414,10 @@ visibility: visible;
 	background: #ee3535;
 }
 
-#login-screen{
-	height:100%;
+.form-group.invalid .form-control {
+    border-color: #f33a58;
+}
+  
+.form-group.invalid .form-message {
+    color: #f33a58;
 }

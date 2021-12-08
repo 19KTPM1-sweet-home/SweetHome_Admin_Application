@@ -437,4 +437,12 @@
   background: #ee3535;
 }
 
+.form-group.invalid .form-control {
+  border-color: #f33a58;
+}
+
+.form-group.invalid .form-message {
+  color: #f33a58;
+}
+
 /*# sourceMappingURL=app.css.map */
