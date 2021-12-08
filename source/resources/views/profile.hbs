@@ -36,18 +36,31 @@
                                         <div class="col-xl-4 col-sm-4 border-right-1 prf-col">
                                             <div class="profile-name">
                                                 <h4 class="text-primary">{{admin.fullname}}</h4>
-                                                <p>{{admin.job}}</p>
+                                                {{#if admin.job}}
+                                                <p class="text-muted">{{admin.job}}</p>
+                                                {{else}}
+                                                <p class="text-muted">Job: Unknown</p>
+                                                {{/if}}
+                                                
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-sm-4 border-right-1 prf-col">
                                             <div class="profile-email">
+                                                {{#if admin.email}}
                                                 <h4 class="text-muted">{{admin.email}}</h4>
+                                                {{else}}
+                                                <h4 class="text-muted">Unknown</h4>
+                                                {{/if}}
                                                 <p>Email</p>
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-sm-4 prf-col">
                                             <div class="profile-call">
+                                                {{#if admin.phoneNumber}}
                                                 <h4 class="text-muted">{{admin.phoneNumber}}</h4>
+                                                {{else}}
+                                                <h4 class="text-muted">Unknown</h4>
+                                                {{/if}}
                                                 <p>Phone No.</p>
                                             </div>
                                         </div>
@@ -92,7 +105,11 @@
                                                     <h5 class="f-w-500">Email <span class="pull-right">:</span>
                                                     </h5>
                                                 </div>
+                                                {{#if admin.email}}
                                                 <div class="col-9"><span>{{admin.email}}</span></div>
+                                                {{else}}
+                                                <div class="col-9"><span>Unknown</span></div>
+                                                {{/if}}
                                             </div>
 
                                             <div class="row mb-4">
@@ -100,7 +117,11 @@
                                                     <h5 class="f-w-500">Job <span class="pull-right">:</span>
                                                     </h5>
                                                 </div>
+                                                {{#if admin.job}}
                                                 <div class="col-9"><span>{{admin.job}}</span></div>
+                                                {{else}}
+                                                <div class="col-9"><span>Unknown</span></div>
+                                                {{/if}}
                                             </div>
 
                                             <div class="row mb-4">
@@ -108,15 +129,23 @@
                                                     <h5 class="f-w-500">Age <span class="pull-right">:</span>
                                                     </h5>
                                                 </div>
-                                                <div class="col-9"><span>{{admin.age}}</span>
-                                                </div>
+                                                {{#if admin.age}}
+                                                <div class="col-9"><span>{{admin.age}}</span></div>
+                                                {{else}}
+                                                <div class="col-9"><span>Unknown</span></div>
+                                                {{/if}}
+                                                
                                             </div>
                                             <div class="row mb-4">
                                                 <div class="col-3">
                                                     <h5 class="f-w-500">Location <span class="pull-right">:</span></h5>
                                                 </div>
-                                                <div class="col-9"><span>{{admin.address}}</span>
-                                                </div>
+                                                {{#if admin.address}}
+                                                <div class="col-9"><span>{{admin.address}}</span></div>
+                                                {{else}}
+                                                <div class="col-9"><span>Unknown</span></div>
+                                                {{/if}}
+                                                
                                             </div>
                                         </div>
                                     </div>

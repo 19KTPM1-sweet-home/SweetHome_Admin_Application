@@ -1,7 +1,18 @@
 $(window).on('load', () => {
 
+    // ------- ADD NEW ADMIN ACCOUNT MODAL EVENT --------
+    $("#add-admin-account-btn").click((e) => {
+        e.preventDefault();
+        $('#add-admin-account-modal').modal('show');
+    })
+    $("#add-admin-account-modal .close").click((e) => {
+        e.preventDefault();
+        $('#add-admin-account-modal').modal('hide');
+    })
+    $("#add-admin-account-modal").find('.required').blur((e)=>{
+        console.log(e.target.value)
+    })
     // ------- ADD NEW PROPERTY MODAL EVENT --------
-
     // add new feature button click event
     $("#add-new-feature-btn").click(function (e) { 
         e.preventDefault();

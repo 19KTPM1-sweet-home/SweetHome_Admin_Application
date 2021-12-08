@@ -19,7 +19,7 @@ exports.editProfile = async (slug,admin) =>{
     await adminModel.updateOne({slug:slug},admin);
 }
 
-exports.changePassword = async (username,oldPassword,newPassword) =>{
+exports.changePassword = (username,oldPassword,newPassword) =>{
     return new Promise(async (resolve, reject) => {
         const admin = await adminModel.findOne({
             "username": username
@@ -38,5 +38,37 @@ exports.changePassword = async (username,oldPassword,newPassword) =>{
         }
         else
             resolve('wrong-password');
+    });
+}
+
+exports.listAll = ()=>{
+    return new Promise( (resolve, reject) => {
+        adminModel.find({}).lean()
+        .then((admins)=>{
+            resolve(admins);
+        })
+        .catch((err)=>{reject(err);});
+    });
+}
+
+exports.createAccount = (username,password,fullname) =>{
+    return new Promise( async (resolve, reject) => {
+        const existAdmin = await adminModel.findOne({username:username});
+        if(existAdmin){
+            resolve("exist")
+        }
+        const hashPassword = await bcrypt.hash(password,10);
+        const newAdminModel = new adminModel({
+            username: username,
+            password: hashPassword,
+            fullname: fullname,
+            slug:'',
+        });
+        newAdminModel.save((err) => {
+            if(err) {
+                reject(err);
+            }
+            resolve("success");
+        })
     });
 }

@@ -1,0 +1,162 @@
+<!--**********************************
+            Content body start
+        ***********************************-->
+<div class="content-body" style="min-height: 932px;">
+    <div class="container-fluid">
+        <div class="row page-titles mx-0">
+            <div class="col-sm-6 p-md-0">
+                <div class="welcome-text">
+                    <h4>Hi, Welcome To Account Dashboard! </h4>
+                    <span class="ml-1">Admin Dashboard</span>
+                </div>
+            </div>
+            <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href='/'>Home</a></li>
+                    <li class="breadcrumb-item active"><a href="/account/admin-account">Admin Account</a></li>
+                </ol>
+            </div>
+        </div>
+        <!-- row -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="admin-account-table" class="table-responsive">
+                            <section class="ftco-section">
+                                <div class="container ">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-6 text-center">
+                                            <h2 class="heading-section">Admin Accounts</h2>
+                                        </div>
+                                    </div>
+                                    <div class="row flex-row-reverse">
+                                        <div class="col-md-3 text-center">
+                                            <div class="success-btn-wrapper">
+                                                <a id="add-admin-account-btn" class="btn btn-success"><i
+                                                        class="fa fa-plus"></i> <span>New admin account</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-wrap">
+                                                <table class="table table-responsive-xl">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Full Name</th>
+                                                            <th>Username</th>
+                                                            <th>Phone Number</th>
+                                                            <th>Jobs</th>
+                                                            <th>&nbsp;</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {{#each admins}}
+                                                        <tr class="alert" role="alert">
+
+                                                            <td class="d-flex align-items-center">
+                                                                <div class="img"
+                                                                    style="background-image: url(../../../public/images/avatar/2.png);">
+                                                                </div>
+                                                                <div class="pl-3 email">
+                                                                    <span>{{this.fullname}}</span>
+                                                                </div>
+                                                            </td>
+                                                            <td>{{this.username}}</td>
+                                                            {{#if this.phoneNumber}}
+                                                            <td>{{this.phoneNumber}}</td>
+                                                            {{else}}
+                                                            <td>Unknown</td>
+                                                            {{/if}}
+
+                                                            {{#if this.job}}
+                                                            <td class="status"><span class="active">{{this.job}}</span>
+                                                            </td>
+                                                            {{else}}
+                                                            <td class="status"><span class="waiting">Unknown</span></td>
+                                                            {{/if}}
+                                                            <td>
+                                                                <a type="button" class="edit">
+                                                                    <i class="ti-pencil"></i>
+                                                                </a>
+                                                                <button type="button" class="close" data-dismiss="alert"
+                                                                    aria-label="Close">
+                                                                    <i class="fa fa-close"></i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                        {{/each}}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--**********************************
+            Content body end
+        ***********************************-->
+    <!-- Modal -->
+    <div class="modal fade" id="add-admin-account-modal" style="display: true;" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create Admin Account</h5>
+                    <button type="button" class="close" data-dismiss="modal"><span>×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="basic-form">
+                                <form method="POST" action="/account/admin/create">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label>Full name</label>
+                                            <input type="text" class="form-control" name="fullname" placeholder="Enter your full name">
+                                            <div class="invalid-feedback animated fadeInUp required" 
+                                                style="display: block;"></div>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label>Username</label>
+                                            <input type="text" class="form-control" name="username" placeholder="Enter your username">
+                                            <div class="invalid-feedback animated fadeInUp required"
+                                                style="display: block;"></div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Password</label>
+                                            <input type="password" class="form-control" name="password" placeholder="Enter your password">
+                                            <div class="invalid-feedback animated fadeInUp required min"
+                                                style="display: block;"></div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Confirm password</label>
+                                            <input type="password" class="form-control" name="confirm_password" placeholder="Re-enter your password">
+                                            <div class="invalid-feedback animated fadeInUp required match"
+                                                style="display: block;"></div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="form-row justify-content-end">
+                                        <div class="col-lg-2 ">
+                                        <button type="submit" class="btn btn-primary w-100">Save</button>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>

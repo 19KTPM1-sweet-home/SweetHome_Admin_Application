@@ -16,7 +16,7 @@ const Admin = new Schema(
     address:{type:String},
     avatar:{type:String},
     background:{type:String},
-    slug: { type: String, slug: 'name', unique: true, required: true },
+    slug: { type: String, slug: 'username', unique: true },
   },
   {
     // assign createAt and updateAt fields to Schema
