@@ -5,7 +5,7 @@ const loginController = require('../controllers/authController');
 
 
 // change password => [POST] /login/:slug/change-password
-router.post('/:slug/change-password', loginController.changePassword)
+router.post('/change-password', loginController.changePassword)
 
 // submit login form => [POST] /login
 router.post('/', passport.authenticate('local', {

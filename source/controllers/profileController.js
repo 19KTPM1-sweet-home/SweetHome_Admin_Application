@@ -1,15 +1,15 @@
 const adminService = require('../services/adminService')
 class profileController{
-    //[GET] /profile/:slug
+    //[GET] /profile
     async show(req, res){
-        const admin = await adminService.getProfileBySlug(req.params.slug);
+        const admin = await adminService.getProfileBySlug(req.user.slug);
         res.render('profile',{admin:admin});
     }
 
-    //[POST] /profile/:slug/edit
+    //[POST] /profile/edit
     async edit(req, res){
-        await adminService.editProfile({_id: req.params.slug},req.body);
-        res.redirect('/profile/'+req.params.slug)
+        const ack = await adminService.editProfile(req.user.slug,req.body);
+        res.redirect('/profile?edit-profile='+ack);
     }
 }
 module.exports = new profileController();

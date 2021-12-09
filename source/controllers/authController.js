@@ -6,11 +6,11 @@ class authController {
         res.render('login',{layout:false, wrongPassword: wrongPassword});
     }
 
-    //[POST] /login/:slug/change-password
+    //[POST] /login/change-password
     async changePassword(req, res) {
         const ack = await adminService.changePassword(req.body.username, req.body.password,req.body.newPassword);
-        console.log('/profile/'+req.params.slug+'?change-password='+ack);
-        res.redirect('/profile/'+req.params.slug+'?change-password='+ack);
+        console.log('/profile?change-password='+ack);
+        res.redirect('/profile?change-password='+ack);
     }
 }
 

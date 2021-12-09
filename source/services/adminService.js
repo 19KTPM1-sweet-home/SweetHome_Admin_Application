@@ -16,7 +16,16 @@ exports.getProfileBySlug =async (slug)=>{
 }
 
 exports.editProfile = async (slug,admin) =>{
-    await adminModel.updateOne({slug:slug},admin);
+    return new Promise((resolve,reject)=>{
+         adminModel.updateOne({slug:slug},admin,(err)=>{
+            if(err) {
+                console.log(err);
+                reject(err);
+            }
+            resolve('success');
+         });
+
+    })
 }
 
 exports.changePassword = (username,oldPassword,newPassword) =>{
