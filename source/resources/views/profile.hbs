@@ -200,7 +200,7 @@
                                         <div class="pt-3">
                                             <div class="settings-form">
                                                 <h4 class="text-primary">Change password</h4>
-                                                <form method="POST" action="/login/{{admin.slug}}/change-password">
+                                                <form method="POST" action="/login/{{admin.slug}}/change-password" id="change-password-form">
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label>Username</label>
@@ -208,30 +208,30 @@
                                                                 value="{{admin.username}}" class="form-control"
                                                                 readonly>
                                                         </div>
-                                                        <div class="form-group col-md-6">
+                                                        <div class="form-group col-md-6" of="password">
                                                             <label>Old Password</label>
                                                             <input type="password" name="password"
-                                                                placeholder="Enter old password" class="form-control">
-                                                            <div msg = 'pwd-error' class="invalid-feedback animated fadeInUp"
+                                                                placeholder="Enter old password" class="form-control required min">
+                                                            <div class="invalid-feedback animated fadeInUp"
                                                                 style="display: block;"></div>
                                                         </div>
-                                                        <div class="form-group col-md-6">
+                                                        <div class="form-group col-md-6" of="newPassword">
                                                             <label>New Password</label>
                                                             <input type="password" name="newPassword"
-                                                                placeholder="Enter new password" class="form-control">
-                                                            <div msg = 'pwd-error' class="invalid-feedback animated fadeInUp"
+                                                                placeholder="Enter new password" class="form-control required min">
+                                                            <div class="invalid-feedback animated fadeInUp"
                                                                 style="display: block;"></div>
                                                         </div>
-                                                        <div class="form-group col-md-6">
+                                                        <div class="form-group col-md-6" of="confirmNewPassword">
                                                             <label>Confirm New Password</label>
                                                             <input type="password" name="confirmNewPassword"
                                                                 placeholder="Re-enter new password"
-                                                                class="form-control">
-                                                            <div msg = 'pwd-error' class="invalid-feedback animated fadeInUp"
+                                                                class="form-control required min match">
+                                                            <div class="invalid-feedback animated fadeInUp"
                                                                 style="display: block;"></div>
                                                         </div>
                                                     </div>
-                                                    <button id="#change-password-btn" class="btn btn-primary"
+                                                    <button class="btn btn-primary"
                                                         type="submit">Save changes</button>
                                                 </form>
                                             </div>
@@ -246,100 +246,3 @@
         </div>
     </div>
 </div>
-{{!-- handle change password --}}
-<script>
-    const passwordInput = document.querySelectorAll("#account-settings input[type=password]");
-    const changePwdBtn = document.querySelector("#account-settings Button[type=submit]");
-    const passwordMsg = document.querySelectorAll("#account-settings div[msg=pwd-error]");
-    // input: child element => input username or input password 
-    // expected output: parent that match selector => form-group
-    function getParent(element, selector) {
-        while (element.parentElement) {
-
-            if (element.parentElement.matches(selector)) {
-                return element.parentElement;
-            }
-            element = element.parentElement;
-        }
-    }
-    function isMinLength(value, min) {
-        return value.length >= min ? undefined : `Vui lòng nhập tối thiểu ${min} ký tự`;
-    }
-    function isRequired(value) {
-        return value ? undefined : 'Vui lòng nhập trường này';
-    }
-
-
-    function disableBtn(btn) {
-        if (!btn.classList.contains("disabled")) {
-            btn.classList.add("disabled");
-        }
-    }
-    function enableBtn(btn) {
-        let isValid = true;
-        passwordInput.forEach((input) => {
-            if (getParent(input, '.form-group').classList.contains("invalid")) {
-                isValid = false;
-            }
-        })
-        if (isValid) {
-            btn.classList.remove("disabled");
-        }
-    }
-    passwordInput.forEach((input, key) => {
-        let msg;
-        passwordMsg.forEach((message, index) => {
-            if(index==key){
-                msg=message;
-            }
-        })
-        if(key!=2){
-        input.onblur = function () {
-            const errorMsg = isRequired(input.value);
-            if (errorMsg) {
-                msg.innerText = errorMsg;
-                const formGroup = getParent(input, ".form-group");
-                formGroup.classList.add("invalid");
-                disableBtn(changePwdBtn);
-            }
-            else {
-                msg.innerText = '';
-                const formGroup = getParent(input, ".form-group");
-                formGroup.classList.remove("invalid");
-                enableBtn(changePwdBtn);
-            }
-        }
-        
-        input.oninput = function () {
-            const errMinMsg = isMinLength(input.value, 5);
-            if (errMinMsg) {
-                msg.innerText = errMinMsg;
-                const formGroup = getParent(input, ".form-group");
-                formGroup.classList.add("invalid");
-                disableBtn(changePwdBtn);
-            }
-            else {
-                msg.innerText = '';
-                const formGroup = getParent(input, ".form-group");
-                formGroup.classList.remove("invalid");
-                enableBtn(changePwdBtn);
-            }
-        }
-        }
-    })
-    passwordInput[2].oninput = (event) => {
-        let msg = passwordMsg[2];
-        if (passwordInput[1].value !== passwordInput[2].value) {
-            msg.innerText = 'Mật khẩu không trùng khớp'
-            const formGroup = getParent(passwordInput[2], ".form-group");
-            formGroup.classList.add("invalid");
-            disableBtn(changePwdBtn);
-        }
-        else {
-            msg.innerText = '';
-            const formGroup = getParent(passwordInput[2], ".form-group");
-            formGroup.classList.remove("invalid");
-            enableBtn(changePwdBtn);
-        }
-    }
-</script>

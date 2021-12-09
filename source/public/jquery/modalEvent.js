@@ -9,9 +9,6 @@ $(window).on('load', () => {
         e.preventDefault();
         $('#add-admin-account-modal').modal('hide');
     })
-    $("#add-admin-account-modal").find('.required').blur((e)=>{
-        console.log(e.target.value)
-    })
     // ------- ADD NEW PROPERTY MODAL EVENT --------
     // add new feature button click event
     $("#add-new-feature-btn").click(function (e) { 

@@ -22,19 +22,19 @@
                     <div class="authincation-content">
                         <div class="row no-gutters">
                             <div class="col-xl-12">
-                                <div class="auth-form">
+                                <div class="auth-form" >
                                     <h4 class="text-center mb-4">Administrator Dashboard</h4>
-                                    <form method="POST" action="/login">
-                                        <div class="form-group">
+                                    <form method="POST" action="/login" id="sign-in-form">
+                                        <div class="form-group" of="username">
                                             <label><strong>Username*</strong></label>
-                                            <input name="username" type="text" class="form-control usernameInput">
-                                            <div id="val-username-error" class="invalid-feedback animated fadeInUp"
+                                            <input name="username" type="text" class="form-control required">
+                                            <div class="invalid-feedback animated fadeInUp"
                                                 style="display: block;"></div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group" of="password">
                                             <label><strong>Password*</strong></label>
-                                            <input name="password" type="password" class="form-control passwordInput">
-                                            <div id="val-password-error" class="invalid-feedback animated fadeInUp"
+                                            <input name="password" type="password" class="form-control required min">
+                                            <div class="invalid-feedback animated fadeInUp"
                                                 style="display: block;"></div>
                                         </div>
                                         <div class="form-row d-flex justify-content-between mt-4 mb-2">
@@ -48,7 +48,7 @@
                                             </div>
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" class="sign-in-btn btn btn-primary btn-block">Sign
+                                            <button type="submit" class="btn btn-primary btn-block">Sign
                                                 In</button>
                                         </div>
                                     </form>
@@ -66,10 +66,12 @@
         Scripts
     ***********************************-->
     <!-- Required vendors -->
-    <script src="./signin_files/global.min.js.tải xuống"></script>
-    <script src="./signin_files/quixnav-init.js.tải xuống"></script>
-    <script src="./signin_files/custom.min.js.tải xuống"></script>
-    <script src="../../public/jquery/auth.js"></script>
+    <script src="/public/javascripts/vendor/global/global.min.js"></script>
+    <script src="/public/javascripts/js/quixnav-init.js"></script>
+    <script src="/public/javascripts/js/custom.min.js"></script>
+    
+    <script src="../../public/jquery/jquery.js"></script>
+    <script src="../../public/jquery/form.js"></script>
 
 
 </body>
