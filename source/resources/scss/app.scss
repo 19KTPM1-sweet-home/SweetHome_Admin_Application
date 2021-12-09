@@ -604,3 +604,32 @@ visibility: visible;
 	#admin-account-table #add-admin-account-btn{
 		color:#ffffff
 	}
+
+
+//--------START PROFILE----------
+.profile-head {
+	position: relative;
+	min-height: 500px;
+}
+
+
+.profile-head .photo-content {
+	z-index: 1;
+}
+
+.profile-head .profile-photo {
+	position: absolute;
+	top: 7rem;
+	left: 3rem;
+	z-index: 2;
+}
+
+.profile-head .profile-info {
+	position: absolute;
+	top: 15rem;
+	left: 11rem;
+	max-width: 100%;
+	background: transparent;
+}
+
+//--------END PROFILE----------
