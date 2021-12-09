@@ -9,8 +9,7 @@ class authController {
     //[POST] /login/change-password
     async changePassword(req, res) {
         const ack = await adminService.changePassword(req.body.username, req.body.password,req.body.newPassword);
-        console.log('/profile?change-password='+ack);
-        res.redirect('/profile?change-password='+ack);
+        res.redirect('/profile?'+ack);
     }
 }
 

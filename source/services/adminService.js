@@ -22,7 +22,7 @@ exports.editProfile = async (slug,admin) =>{
                 console.log(err);
                 reject(err);
             }
-            resolve('success');
+            resolve('edit-profile-success');
          });
 
     })
@@ -42,7 +42,7 @@ exports.changePassword = (username,oldPassword,newPassword) =>{
                     console.log(err);
                     reject(err);
                 }
-                resolve('success');
+                resolve('change-password-success');
             });
         }
         else
@@ -77,7 +77,7 @@ exports.createAccount = (username,password,fullname) =>{
             if(err) {
                 reject(err);
             }
-            resolve("success");
+            resolve("add-new-account-success");
         })
     });
 }

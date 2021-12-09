@@ -79,53 +79,23 @@
 
 
 
-
-
-
-
-
-{{!-- <div class="pt-20 authincation h-100">
-    <div class="container-fluid h-100">
-        <div class="row justify-content-center h-100 align-items-center">
-            <div class="col-md-6">
-                <div class="authincation-content">
-                    <div class="row no-gutters">
-                        <div class="col-xl-12">
-                            <div class="auth-form">
-                                <h4 class="text-center mb-4">Administrator Dashboard</h4>
-                                <form method="POST" action="/login">
-                                    <div class="form-group">
-                                        <label><strong>Username*</strong></label>
-                                        <input name="username" type="text" class="form-control usernameInput">
-                                        <div id="val-username-error" class="invalid-feedback animated fadeInUp"
-                                            style="display: block;"></div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label><strong>Password*</strong></label>
-                                        <input name="password" type="password" class="form-control passwordInput">
-                                        <div id="val-password-error" class="invalid-feedback animated fadeInUp"
-                                            style="display: block;"></div>
-                                    </div>
-                                    <div class="form-row d-flex justify-content-between mt-4 mb-2">
-                                        <div class="form-group">
-                                            <div class="form-check ml-2">
-                                                <input class="form-check-input" type="checkbox" id="basic_checkbox_1">
-                                                <label class="form-check-label" for="basic_checkbox_1">Remember
-                                                    me</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="text-center">
-                                        <button type="submit" class="sign-in-btn btn btn-primary btn-block">Sign
-                                            In</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+{{#if wrongPassword}}
+    <div class="row justify-content-end fixed-bottom">
+        <div class="col-lg-6">
+            <div class="alert alert-danger left-icon-big alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span><i
+                            class="mdi mdi-close"></i></span>
+                </button>
+                <div class="media">
+                    <div class="alert-left-icon-big">
+                        <span><i class="mdi mdi-alert"></i></span>
+                    </div>
+                    <div class="media-body">
+                        <h5 class="mt-1 mb-1">Login failed!</h5>
+                        <p>Invalid username or password</p>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
-</div> --}}
+    {{/if}}

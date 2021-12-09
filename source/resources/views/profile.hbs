@@ -41,7 +41,7 @@
                                                 {{else}}
                                                 <p class="text-muted">Job: Unknown</p>
                                                 {{/if}}
-                                                
+
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-sm-4 border-right-1 prf-col">
@@ -134,7 +134,7 @@
                                                 {{else}}
                                                 <div class="col-9"><span>Unknown</span></div>
                                                 {{/if}}
-                                                
+
                                             </div>
                                             <div class="row mb-4">
                                                 <div class="col-3">
@@ -145,7 +145,7 @@
                                                 {{else}}
                                                 <div class="col-9"><span>Unknown</span></div>
                                                 {{/if}}
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -200,7 +200,8 @@
                                         <div class="pt-3">
                                             <div class="settings-form">
                                                 <h4 class="text-primary">Change password</h4>
-                                                <form method="POST" action="/login/change-password" id="change-password-form">
+                                                <form method="POST" action="/login/change-password"
+                                                    id="change-password-form">
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label>Username</label>
@@ -211,14 +212,16 @@
                                                         <div class="form-group col-md-6" of="password">
                                                             <label>Old Password</label>
                                                             <input type="password" name="password"
-                                                                placeholder="Enter old password" class="form-control required min">
+                                                                placeholder="Enter old password"
+                                                                class="form-control required min">
                                                             <div class="invalid-feedback animated fadeInUp"
                                                                 style="display: block;"></div>
                                                         </div>
                                                         <div class="form-group col-md-6" of="newPassword">
                                                             <label>New Password</label>
                                                             <input type="password" name="newPassword"
-                                                                placeholder="Enter new password" class="form-control required min">
+                                                                placeholder="Enter new password"
+                                                                class="form-control required min">
                                                             <div class="invalid-feedback animated fadeInUp"
                                                                 style="display: block;"></div>
                                                         </div>
@@ -231,8 +234,7 @@
                                                                 style="display: block;"></div>
                                                         </div>
                                                     </div>
-                                                    <button class="btn btn-primary"
-                                                        type="submit">Save changes</button>
+                                                    <button class="btn btn-primary" type="submit">Save changes</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -246,3 +248,66 @@
         </div>
     </div>
 </div>
+{{!-- ALERT HERE --}}
+{{#if editSuccess}}
+<div class="row justify-content-end fixed-bottom">
+    <div class="col-lg-6">
+        <div class="alert alert-success left-icon-big alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span><i
+                        class="mdi mdi-close"></i></span>
+            </button>
+            <div class="media">
+                <div class="alert-left-icon-big">
+                    <span><i class="mdi mdi-check-circle-outline"></i></span>
+                </div>
+                <div class="media-body">
+                    <h5 class="mt-1 mb-1">Congratulations!</h5>
+                    <p>You have successfully edit this account.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{else}}
+{{#if changePasswordSuccess}}
+<div class="row justify-content-end fixed-bottom">
+    <div class="col-lg-6">
+        <div class="alert alert-success left-icon-big alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span><i
+                        class="mdi mdi-close"></i></span>
+            </button>
+            <div class="media">
+                <div class="alert-left-icon-big">
+                    <span><i class="mdi mdi-check-circle-outline"></i></span>
+                </div>
+                <div class="media-body">
+                    <h5 class="mt-1 mb-1">Congratulations!</h5>
+                    <p>You have successfully changed password.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{else}}
+{{#if wrongPassword}}
+<div class="row justify-content-end fixed-bottom">
+    <div class="col-lg-6">
+        <div class="alert alert-danger left-icon-big alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span><i
+                        class="mdi mdi-close"></i></span>
+            </button>
+            <div class="media">
+                <div class="alert-left-icon-big">
+                    <span><i class="mdi mdi-alert"></i></span>
+                </div>
+                <div class="media-body">
+                    <h5 class="mt-1 mb-1">Change password failed!</h5>
+                    <p>Wrong password for this account</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/if}}
+{{/if}}
+{{/if}}
