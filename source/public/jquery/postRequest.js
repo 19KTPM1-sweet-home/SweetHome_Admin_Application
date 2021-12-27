@@ -27,6 +27,9 @@ $(window).on('load', () => {
                   $('.overlay-spinner').removeClass('show');
                   $('#successTitle').text('Success');
                   $('#successMsg').text('Property has added to database');
+
+                  $('.paging-wrapper').pagination('drawPage', 1);
+                  loadPropertiesPerPage(1);
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
                if(errorThrown) {
@@ -68,6 +71,10 @@ $(window).on('load', () => {
                   $('.overlay-spinner').removeClass('show');
                   $('#successTitle').text('Success');
                   $('#successMsg').text('Property has updated in the database');
+
+                  $('#editForm').removeClass($('#editForm')[0].classList[2]);
+                  $('.paging-wrapper').pagination('drawPage', 1);
+                  loadPropertiesPerPage(1);
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
                if(errorThrown) {

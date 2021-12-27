@@ -60,7 +60,6 @@ $(window).on('load', () => {
         e.preventDefault();
         $(this).removeAttr("href");
         $('#successModal').modal('hide');
-        window.location.reload();
     });
 
     // ------- ERROR MODAL EVENT --------
