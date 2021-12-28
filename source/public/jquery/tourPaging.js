@@ -77,7 +77,7 @@ function loadTourPerPage(currentPage) {
             $('#manageTourModal .customer-name').val(data.homeTour[homeTourIndex].customerName);
             $('#manageTourModal .customer-email').val(data.homeTour[homeTourIndex].customerEmail);
             $('#manageTourModal .customer-phone-number').val(data.homeTour[homeTourIndex].customerPhoneNumber);
-
+            $('#manageTourModal .appointment-date').val(data.homeTour[homeTourIndex].appointmentDate);
             $('#manageTourModal .home-tour-id').val(data.homeTour[homeTourIndex].id);
 
             if(data.homeTour[homeTourIndex].status == "accepted" || data.homeTour[homeTourIndex].status == "denied")
