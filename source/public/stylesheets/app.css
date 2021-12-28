@@ -627,4 +627,68 @@
   background: transparent;
 }
 
+.tour-card-header {
+  background-color: #343957;
+}
+
+.tour-title {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.tour-filter-wrapper {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
+
+.tour-filter-wrapper .all-filter, .pending-filter {
+  color: black;
+}
+
+.tour-filter-wrapper .accepted-filter, .denied-filter {
+  color: white;
+}
+
+.tour-filter-wrapper .all-filter {
+  background-color: #17a2b8;
+}
+
+.tour-filter-wrapper .all-filter.active {
+  background-color: #17a2b8;
+}
+
+.tour-filter-wrapper .accepted-filter.active {
+  background-color: #1e7e34;
+}
+
+.tour-filter-wrapper .denied-filter.active {
+  background-color: #dc3545;
+}
+
+.tour-filter-wrapper .btn {
+  min-width: 50px;
+  border-radius: 2px;
+  border: none;
+  padding: 6px 12px;
+  font-size: 95%;
+  outline: none !important;
+  height: 30px;
+}
+
+.btn-success {
+  background-color: #1e7e34;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+}
+
+#manageTourModal label {
+  color: black;
+}
+
+#manageTourModal .accept-btn {
+  color: white;
+}
+
 /*# sourceMappingURL=app.css.map */

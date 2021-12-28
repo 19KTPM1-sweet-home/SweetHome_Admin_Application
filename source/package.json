@@ -18,6 +18,7 @@
     "fs-extra": "^10.0.0",
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
+    "moment": "^2.29.1",
     "mongoose": "^6.0.13",
     "mongoose-delete": "^0.5.4",
     "mongoose-slug-generator": "^1.0.4",
