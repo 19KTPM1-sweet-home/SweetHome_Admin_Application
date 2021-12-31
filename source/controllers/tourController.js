@@ -20,8 +20,7 @@ class tourController {
         const ack = await tourService.updateTourStatus(req.params.homeTourId, req.params.status);
         if(ack)
           res.send(ack);
-      }
-
+    }
 }
 
 module.exports = new tourController();

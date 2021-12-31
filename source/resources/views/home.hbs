@@ -1,359 +1,57 @@
-
-
-
-    <!--**********************************
-        Content body start
-    ***********************************-->
-    <div class="content-body">
-        <div class="container-fluid">
-            <div class="row page-titles mx-0">
-                <div class="col-sm-6 p-md-0">
-                    <div class="welcome-text">
-                        <h4>Hi, {{admin.fullname}}! Welcome back with Sweet Home</h4>
+<div class="content-body">
+    <!-- row -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-8 col-lg-8 col-md-8">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <h4 class="card-title home-tour-title">Home Tour Per Day</h4>
+                        <div class="filter">
+                            <select name="filter" class="select-filter">
+                                <option value="Day" selected="selected">Day</option>
+                                <option value="Month">Month</option>
+                                <option value="Quarter">Quarter</option>
+                                <option value="Year">Year</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <!-- row -->
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Properties</h4>
-                            <div class="success-btn-wrapper">
-                                <a id="addNewPropertyBtn" class="btn btn-success"><i class="fa fa-plus"></i> <span>Add New Property</span></a>						
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-8">
+                                <canvas id="homeTourOverview"></canvas>
                             </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered verticle-middle table-responsive-sm">
-                                    <thead>
-                                        <tr>
-                                            <th class="name-col" scope="col">Name</th>
-                                            <th class="category-col" scope="col">Category</th>
-                                            <th class="address-col" scope="col">Address</th>
-                                            <th class="seller-col" scope="col">Seller</th>
-                                            <th class="price-col" scope="col">Price</th>
-                                            <th class="status-col" scope="col">Status</th>
-                                            <th class="action-col" scope="col">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="table-body">
-                                        {{!-- Jquery will insert properties here --}}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div class="paging-wrapper">
-                            {{!-- JQuery will generate pagination UI here --}}
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Add new property Modal HTML -->
-        <div id="addPropertyModal" class="modal fade">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">						
-                        <h4 class="modal-title">Add Property</h4>
-                        <button type="button" id="cancelFormBtn" class="close" aria-hidden="true">&times;</button>
+            <div class="col-xl-4 col-lg-4 col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Properties Of Interest</h4>
                     </div>
-                    <div class="modal-body">					
-                        <form id="addForm" class="row g-3" enctype="multipart/form-data">
-                            {{!-- START GENERAL --}}
-                            <div class="general-section col-12">						
-                                <h4 class="general-title">General</h4>
-                            </div>
-                            <div class="col-md-6 form-group">
-                              <label for="inputPropertyName" class="form-label">Property name</label>
-                              <input type="text" class="form-control" id="inputPropertyName" name="propertyName" value="" required>
-                            </div>
-                            <div class="col-md-6">
-                              <label for="inputCategory" class="form-label">Category</label>
-                              <select id="inputCategory" class="form-select" name="propertyCategory" required>
-                                <option value="" disabled selected>Select your option</option>
-                                <option value="House">House</option>
-                                <option value="Apartment">Apartment</option>
-                                <option value="Villa">Villa</option>
-                                <option value="Land">Land</option>
-                              </select>
-                            </div>
-                            <div class="col-12">
-                              <label for="inputAddress" class="form-label">Address</label>
-                              <input type="text" class="form-control" id="inputAddress" name="propertyAddress" required>
-                            </div>
-                            <div class="col-12">
-                              <label for="inputDescription" class="form-label">Description</label>
-                              <textarea class="form-control" id="inputDescription" name="propertyDescription" required></textarea>
-                            </div>
-                            <div class="col-md-6">
-                              <label for="inputPrice" class="form-label">Price</label>
-                              <input type="number" class="form-control" id="inputPrice" min="0" max="1000000000000" name="propertyPrice" required>
-                            </div>
-
-                            <div class="col-md-6">
-                              <label for="inputRate" class="form-label">Rate</label>
-                              <input type="number" class="form-control" id="inputRate" min="1" max="5" name="propertyRate" required>
-                            </div>
-
-                            <div class="col-md-6">
-                              <label for="inputStatus" class="form-label">Status</label>
-                              <select id="inputStatus" class="form-select" name="propertyStatus" required>
-                                <option value="" disabled selected>Select your option</option>
-                                <option value="For Sale">For Sale</option>
-                                <option value="Sold Out">Sold Out</option>
-                              </select>
-                            </div>
-                            {{!-- END GENERAL --}}
-
-                            {{!-- START FEATURE --}}
-                            <div class="feature-section col-12">						
-                                <h4 class="feature-title">Features</h4>
-                            </div>
-
-                            <div id="featureList" class="col-12">
-                                <div class="d-flex align-item-center">
-                                    <input type="text" class="form-control" name="propertyFeature" style="width: 70%;" required>                         
-                                </div>
-                                <br>
-                            </div>
-
-
-                            <div class="col-12 add-new-feature-btn-wrapper">
-                                <input id="add-new-feature-btn" type="button" class="btn btn-primary" value="Add new feature">			
-                            </div>
-
-                            
-                            {{!-- END FEATURE --}}
-
-                            {{!-- START SELLER --}}
-                            <div class="seller-section col-12">						
-                                <h4 class="seller-title">Seller</h4>
-                            </div>
-
-                            <div class="col-md-6 form-group">
-                              <label for="inputSellerName" class="form-label">Seller name</label>
-                              <input type="text" class="form-control" id="inputSellerName" name="sellerName" required>
-                            </div>
-
-                            <div class="col-md-6 form-group">
-                              <label for="inputSellerEmail" class="form-label">Email</label>
-                              <input type="email" class="form-control" id="inputSellerEmail" placeholder="Ex: abc@gmail.com" name="sellerEmail" required>
-                            </div>
-
-                            <div class="col-md-6 form-group">
-                              <label for="inputSellerPhoneNumber" class="form-label">Phone number</label>
-                              <input type="tel" class="form-control" id="inputSellerPhoneNumber" placeholder="Ex: 0932288755" name="sellerPhoneNumber">
-                            </div>                    
-                            {{!-- END SELLER --}}
-                            
-                            {{!-- START PROPERTY IMAGE --}}
-                            <div class="image-section col-12">						
-                                <h4 class="image-title">Image</h4>
-                            </div>
-                            <div class="col-md-12 form-group">
-                                <label for="inputPreviewImage">Select preview image (just choose one image):</label>
-                                <input type="file" id="inputPreviewImage" name="inputPreviewImage" required>
-                            </div>
-                            <div class="col-md-12 form-group">
-                                <label for="inputDetailImage">Select detail image (you can choose multiple images):</label>
-                                <input type="file" id="inputDetailImage" name="inputDetailImage" multiple required>
-                            </div>
-                            {{!-- END PROPERTY IMAGE --}}
-                        
-                            <div class="modal-footer">
-                                <input type="button" id="cancelFormBtn" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                <input type="submit" id="confirmFormBtn" class="btn btn-success confirm-btn" value="Confirm">
-                            </div>
-                        </form>
+                    <div class="card-body">
+                        <canvas id="propertiesOfInterest" width="400" height="400"></canvas>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Edit a property Modal HTML -->
-        <div id="editPropertyModal" class="modal fade">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">						
-                        <h4 class="modal-title">Edit Property</h4>
-                        <button type="button" id="cancelEditFormBtn" class="close" aria-hidden="true">&times;</button>
+            <div class="col-xl-12 col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Top 10 most interested properties</h4>
                     </div>
-                    <div class="modal-body">					
-                        <form id="editForm" class="row g-3" enctype="multipart/form-data">
-                            {{!-- START GENERAL --}}
-                            <div class="general-section col-12">						
-                                <h4 class="general-title">General</h4>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-8">
+                                <div id="topPropertiesOfInterest"></div>
                             </div>
-                            <div class="col-md-6 form-group">
-                              <label for="editPropertyName" class="form-label">Property name</label>
-                              <input type="text" class="form-control" id="editPropertyName" name="propertyName" value="" required>
-                            </div>
-                            <div class="col-md-6">
-                              <label for="editCategory" class="form-label">Category</label>
-                              <select id="editCategory" class="form-select" name="propertyCategory" required>
-                                <option value="" disabled selected>Select your option</option>
-                                <option value="House">House</option>
-                                <option value="Apartment">Apartment</option>
-                                <option value="Villa">Villa</option>
-                                <option value="Land">Land</option>
-                              </select>
-                            </div>
-                            <div class="col-12">
-                              <label for="editAddress" class="form-label">Address</label>
-                              <input type="text" class="form-control" id="editAddress" name="propertyAddress" required>
-                            </div>
-                            <div class="col-12">
-                              <label for="editDescription" class="form-label">Description</label>
-                              <textarea class="form-control" id="editDescription" name="propertyDescription" required></textarea>
-                            </div>
-                            <div class="col-md-6">
-                              <label for="editPrice" class="form-label">Price</label>
-                              <input type="number" class="form-control" id="editPrice" min="0" max="1000000000000" name="propertyPrice" required>
-                            </div>
-
-                            <div class="col-md-6">
-                              <label for="editRate" class="form-label">Rate</label>
-                              <input type="number" class="form-control" id="editRate" min="1" max="5" name="propertyRate" required>
-                            </div>
-
-                            <div class="col-md-6">
-                              <label for="editStatus" class="form-label">Status</label>
-                              <select id="editStatus" class="form-select" name="propertyStatus" required>
-                                <option value="" disabled selected>Select your option</option>
-                                <option value="For Sale">For Sale</option>
-                                <option value="Sold Out">Sold Out</option>
-                              </select>
-                            </div>
-                            {{!-- END GENERAL --}}
-
-                            {{!-- START FEATURE --}}
-                            <div class="feature-section col-12">						
-                                <h4 class="feature-title">Features</h4>
-                            </div>
-
-                            <div id="editFeatureList" class="col-12">
-                                <div class="d-flex align-item-center">
-                                    <input id="feature-1" type="text" class="form-control" name="propertyFeature" style="width: 70%;" required>                         
-                                </div>
-                                <br>
-                            </div>
-
-
-                            <div class="col-12 add-new-feature-btn-wrapper">
-                                <input id="edit-add-new-feature-btn" type="button" class="btn btn-primary" value="Add new feature">			
-                            </div>
-
-
-                            {{!-- END FEATURE --}}
-
-                            {{!-- START SELLER --}}
-                            <div class="seller-section col-12">						
-                                <h4 class="seller-title">Seller</h4>
-                            </div>
-
-                            <div class="col-md-6 form-group">
-                              <label for="editSellerName" class="form-label">Seller name</label>
-                              <input type="text" class="form-control" id="editSellerName" name="sellerName" required>
-                            </div>
-
-                            <div class="col-md-6 form-group">
-                              <label for="editSellerEmail" class="form-label">Email</label>
-                              <input type="email" class="form-control" id="editSellerEmail" placeholder="Ex: abc@gmail.com" name="sellerEmail" required>
-                            </div>
-
-                            <div class="col-md-6 form-group">
-                              <label for="editSellerPhoneNumber" class="form-label">Phone number</label>
-                              <input type="tel" class="form-control" id="editSellerPhoneNumber" placeholder="Ex: 0932288755" name="sellerPhoneNumber" required>
-                            </div>                    
-                            {{!-- END SELLER --}}
-
-                            <div class="modal-footer">
-                                <input type="button" id="editCancelFormBtn" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                <input type="submit" id="editConfirmFormBtn" class="btn btn-success confirm-btn" value="Confirm">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Success Modal HTML -->
-        <div id="successModal" class="modal fade">
-            <div class="modal-dialog modal-confirm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="icon-box">
-                            <i class="fa fa-check"></i>
-                        </div>				
-                        <h4 id="successTitle" class="modal-title w-100">Success</h4>	
-                    </div>
-                    <div class="modal-body">
-                        <div id="successMsg" class="text-center">Property has added to database.</div>
-                    </div>
-                    <div class="modal-footer">
-                        <button id="success-modal-btn" class="btn btn-success btn-block" >OK</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        {{!-- Error modal HTML --}}
-        <div id="errorModal" class="modal fade">
-            <div class="modal-dialog modal-confirm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="icon-box">
-                            <i class="material-icons">&#xE5CD;</i>
-                        </div>				
-                        <h4 id="errorTitle" class="modal-title w-100">Sorry!</h4>	
-                    </div>
-                    <div class="modal-body">
-                        <p id="errorMsg" class="text-center">Your transaction has failed. Please go back and try again.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button id="error-modal-btn" class="btn btn-danger btn-block">OK</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        {{!-- Delete modal HTML --}}
-        </div>
-
-        <!-- Modal HTML -->
-        <div id="deleteModal" class="modal fade">
-            <div class="modal-dialog modal-confirm">
-                <div class="modal-content">
-                    <div class="modal-header flex-column">
-                        <div class="delete-icon-box">
-                            <i class="material-icons">&#xE5CD;</i>
-                        </div>						
-                        <h4 class="modal-title w-100">Are you sure?</h4>	
-                        <button id="exitDeleteModalBtn" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Do you really want to delete these records? This process cannot be undone.</p>
-                    </div>
-                    <div class="modal-footer justify-content-center">
-                        <button id="delete-modal-cancel-btn" type="button" class="btn btn-secondary">Cancel</button>
-                        <button id="delete-modal-delete-btn" type="button" class="btn btn-danger">Delete</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-    <!--**********************************
-        Content body end
-    ***********************************-->
-
-
-   
 </div>
 
 <!-- Boostrap JS -->
@@ -366,9 +64,6 @@
 <script src="/public/javascripts/js/custom.min.js"></script>
 
 <script src="../../public/jquery/jquery.js"></script>
-<script src="../../public/jquery/pagination.js"></script>
-<script src="../../public/jquery/paging.js"></script>
-<script src="../../public/jquery/getRequest.js"></script>
-<script src="../../public/jquery/postRequest.js"></script>
-<script src="../../public/jquery/deleteRequest.js"></script>
-<script src="../../public/jquery/modalEvent.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+<script src="../../public/jquery/chart/dashboardChart.js"></script>

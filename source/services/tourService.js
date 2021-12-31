@@ -1,4 +1,5 @@
 const scheduleModel = require('../models/Schedule');
+const categoryModel = require('../models/Category');
 const tourPerPage = 5;
 const moment = require('moment');
 
@@ -10,7 +11,6 @@ module.exports.loadTourPerPage = (filter, page) => {
         // load from (tourPerPage * page) - tourPerPage
         // ex: tourPerPage = 8, page = 1 => 8 * 1 - 8 = 0 => the 1st page will not skip any element
         // ex: tourPerPage = 8, page = 2 => 8 * 2 - 8 = 8 => the 2nd page will skip 8 elements
-        console.log(filter);
         scheduleModel
             .find(filter)
             .populate({

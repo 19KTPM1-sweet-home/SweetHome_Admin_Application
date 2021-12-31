@@ -4,6 +4,15 @@ const propertiesPerPage = 5;
 
 class propertyController {
     //[GET]  /
+    show(req, res) {
+        if(req.user){
+            res.render('property');
+        }
+        else{
+            res.redirect('/login');
+        }
+    }
+
     async loadProperties(req, res) {
         const properties = await propertyService.loadProperties(propertiesPerPage, req.params.currentPage);
         res.send(properties);
@@ -29,7 +38,6 @@ class propertyController {
         const ack = await propertyService.editProperty(req.params.id, req.body);
         res.send(JSON.stringify({response: ack}));
     }
-
 }
 
 module.exports = new propertyController();

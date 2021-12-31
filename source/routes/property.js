@@ -12,6 +12,8 @@ const upload = multer({
 
 const propertyController = require('../controllers/propertyController');
 
+router.get('/', propertyController.show);
+
 router.get('/page/:currentPage', propertyController.loadProperties);
 
 router.get('/:id', propertyController.loadProperty);
