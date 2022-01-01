@@ -5,7 +5,7 @@ $(window).on('load', function () {
     
     loadHomeTourByDays();
     loadPropertiesOfInterest();
-
+    loadTop10PropertiesOfInterest();
 
     $('.select-filter').on('change', function() {
         const selectedOption = $(this).find(":selected").text();
@@ -130,4 +130,42 @@ $(window).on('load', function () {
             configPieChart(res.listOfCategory, res.datasets);
         });
     }
+
+    function loadTop10PropertiesOfInterest() {
+        const origin = window.location.origin + window.location.pathname;
+        const url = origin + 'top-10-properties-of-interest';
+
+        $.get(url, function (data) {
+            var template = Handlebars.compile(`
+            {{#each property}}
+            <tr">
+                <td>
+                    <div class="rank-col">#{{math @index "+" 1}}</div>
+                </td>
+                <td>
+                    <div class="name-col">{{this.name}}</div>
+                </td>
+                <td>
+                    <div class="category-col">{{this.category}}</div>
+                </td>
+                <td>
+                    <div class="address-col">{{this.address}}</div>
+                </td>
+                <td>
+                    <div class="seller-col">{{this.seller}}</div>
+                </td>
+                <td>
+                    <div class="price-col">{{this.price}}</div>
+                </td>
+                <td>
+                    <div class="num-of-interest-col">{{this.count}}</div>
+                </td>
+                
+            </tr>
+            {{/each}}
+            `);
+
+            $('.table-body').html(template({property: data}));
+        })
+    };
 });

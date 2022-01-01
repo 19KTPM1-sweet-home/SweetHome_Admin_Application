@@ -35,6 +35,12 @@ class homeController {
         if(data)
             res.send(data);
     }
+
+    async loadTop10PropertiesOfInterest(req, res) {
+        var data = await chartService.loadTop10PropertiesOfInterest();
+        if(data)
+            res.send(data);
+    }
 }
 
 module.exports = new homeController();

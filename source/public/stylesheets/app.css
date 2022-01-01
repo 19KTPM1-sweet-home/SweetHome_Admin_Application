@@ -695,4 +695,16 @@
   color: white;
 }
 
+.top-properties-of-interest th {
+  text-align: center;
+}
+
+.top-properties-of-interest .rank-col, .seller-col, .num-of-interest-col {
+  text-align: center;
+}
+
+.top-properties-of-interest .rank-col {
+  font-weight: bold;
+}
+
 /*# sourceMappingURL=app.css.map */

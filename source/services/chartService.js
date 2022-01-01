@@ -288,3 +288,69 @@ module.exports.loadPropertiesOfInterest = () => {
         resolve({listOfCategory: listOfCategory, datasets: datasets});
     });
 }
+
+function loadAllFavouriteProperties() {
+    return new Promise(async (resolve, reject) => {
+        userModel
+        .find()
+        .select('favourite')
+        .populate({
+            path: 'favourite',
+            select: 'name category.name address seller.name price'
+        })
+        .exec((err, favouriteProperties) => {
+            if(err) {
+                console.log(err);
+                reject(err);
+                return;
+            }
+            
+
+            var result = favouriteProperties.map((favouriteList) => {
+                return favouriteList.favourite;
+            })
+            
+            result = result.flat();
+            result = result.map((property) => {
+                return {
+                    _id: property._id.toString(),
+                    name: property.name,
+                    category: property.category.name,
+                    address: property.address,
+                    seller: property.seller.name,
+                    price: property.price.toLocaleString()
+                };
+            })
+            resolve(result);
+        });
+    })
+}
+
+module.exports.loadTop10PropertiesOfInterest = () => {
+    return new Promise(async (resolve, reject) => {
+        var listOfAllFavouriteProperties = await loadAllFavouriteProperties();
+
+        var counts = {};
+        // Count and delete duplicates
+        listOfAllFavouriteProperties  = listOfAllFavouriteProperties.filter((property) => {
+            const tmp = (counts[property._id] || 0) + 1;
+            counts[property._id] = tmp;
+            if(tmp > 1)
+                return false;
+            return true;
+        });
+
+        // Add count to each property object => for sorting later
+        listOfAllFavouriteProperties  = listOfAllFavouriteProperties.map((property) => {
+            var newProperty = property;
+            newProperty['count'] = counts[property._id];
+            return newProperty;
+        });
+
+        // Sort in descending order
+        listOfAllFavouriteProperties.sort((first, second) => {
+            return second.count - first.count;
+        });
+        resolve(listOfAllFavouriteProperties);
+    });
+}
