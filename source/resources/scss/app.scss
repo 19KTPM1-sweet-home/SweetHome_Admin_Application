@@ -126,7 +126,11 @@ visibility: visible;
 	opacity: 1
 }
 
-  /* TABLE */
+  /* PROPERTY TABLE */
+.property-table th {
+	text-align: center;
+}
+
 .table {
     color: #000000;
 }
@@ -639,6 +643,10 @@ visibility: visible;
 //--------END PROFILE----------
 
 //--------START TOUR TABLE--------
+.home-tour-table {
+	text-align: center;
+}
+
 .tour-card-header {
 	background-color: #343957;
 }
@@ -694,7 +702,9 @@ visibility: visible;
 .btn-danger {
 	background-color: #dc3545;
 }
+
 //--------END TOUR TABLE--------
+
 
 //--------START MANAGE TOUR MODAL--------
 #manageTourModal label {
@@ -720,3 +730,4 @@ visibility: visible;
 	font-weight: bold;
 }
 //--------END DASHBOARD--------
+

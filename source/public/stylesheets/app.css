@@ -125,7 +125,11 @@
   opacity: 1;
 }
 
-/* TABLE */
+/* PROPERTY TABLE */
+.property-table th {
+  text-align: center;
+}
+
 .table {
   color: #000000;
 }
@@ -629,6 +633,10 @@
   left: 11rem;
   max-width: 100%;
   background: transparent;
+}
+
+.home-tour-table {
+  text-align: center;
 }
 
 .tour-card-header {
