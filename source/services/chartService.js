@@ -283,7 +283,7 @@ module.exports.loadPropertiesOfInterest = () => {
             const numOfProperties = listCategoryOfAllFavouriteProperties.filter((item) => {
                 return item == category;
             }).length;
-            return numOfProperties * 100 / listCategoryOfAllFavouriteProperties.length;
+            return (numOfProperties * 100 / listCategoryOfAllFavouriteProperties.length).toFixed(2);
         });
         resolve({listOfCategory: listOfCategory, datasets: datasets});
     });

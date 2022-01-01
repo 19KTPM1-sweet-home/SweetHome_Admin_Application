@@ -108,6 +108,11 @@ $(window).on('load', function () {
                 responsive: true,
                 plugins: {
                 datalabels: {
+                    color: 'white',
+                    font: {
+                      weight: 'bold',
+                      size: 16,
+                    },
                     formatter: (val) => {
                     return val + '%';
                     }
