@@ -130,6 +130,4 @@ $(window).on('load', function () {
             configPieChart(res.listOfCategory, res.datasets);
         });
     }
-
-    
 });

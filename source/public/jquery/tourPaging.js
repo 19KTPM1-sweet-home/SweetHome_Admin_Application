@@ -55,8 +55,10 @@ function loadTourPerPage(currentPage) {
         // Update total tours in every get request
         if(data.numOfTour <= tourPerPage)
             $('.paging-wrapper').css("display", "none");
-        else
+        else {
+            $('.paging-wrapper').css("display", "flex");
             $('.paging-wrapper').pagination('updateItems', data.numOfTour);
+        }
 
 
         // Open manage tour modal event

@@ -38,7 +38,7 @@ module.exports.loadTourPerPage = (filter, page) => {
                 })
             
                 // Count total tours
-                scheduleModel.countDocuments((err, count) => {
+                scheduleModel.countDocuments(filter, (err, count) => {
                     if(err) {
                         console.log(err);
                         reject(err);

@@ -42,10 +42,23 @@
                         <h4 class="card-title">Top 10 most interested properties</h4>
                     </div>
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-xl-12 col-lg-8">
-                                <div id="topPropertiesOfInterest"></div>
-                            </div>
+                        <div class="table-responsive top-properties-of-interest">
+                            <table class="table table-bordered verticle-middle table-responsive-sm">
+                                <thead>
+                                    <tr>
+                                        <th class="rank-col" scope="col">Rank</th>
+                                        <th class="name-col" scope="col">Name</th>
+                                        <th class="category-col" scope="col">Category</th>
+                                        <th class="address-col" scope="col">Address</th>
+                                        <th class="seller-col" scope="col">Seller</th>
+                                        <th class="price-col" scope="col">Price</th>
+                                        <th class="num-of-interest-col" scope="col">Number people of interest</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-body">
+                                    {{!-- Jquery will insert properties here --}}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
