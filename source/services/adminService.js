@@ -1,5 +1,8 @@
 const adminModel = require('../models/Admin');
 const bcrypt = require('bcrypt');
+const cloudinary = require('../cloudinary/cloudinary');
+const streamifier = require('streamifier');
+
 exports.findByUsername = (username)=>{
     const admin = adminModel.findOne({
         username: username
@@ -15,15 +18,43 @@ exports.getProfileBySlug =async (slug)=>{
     return admin;
 }
 
-exports.editProfile = async (slug,admin) =>{
-    return new Promise((resolve,reject)=>{
-         adminModel.updateOne({slug:slug},admin,(err)=>{
-            if(err) {
-                console.log(err);
-                reject(err);
+function uploadImage(img, path) {
+    return new Promise((resolve, reject) => {
+        // Upload user avatar to cloud
+        const cld_upload_stream = cloudinary.uploader.upload_stream(
+            {public_id: path}, // slug based ID (for SEO)
+            function(err, result) {
+                if(err) {
+                    console.log('Upload error: ' + err);
+                    reject(err);
+                }
+                resolve(result.secure_url); // return uploaded img url
             }
-            resolve('edit-profile-success');
-         });
+        );
+        // Push img.buffer in to upload stream
+        streamifier.createReadStream(img.buffer).pipe(cld_upload_stream);
+    });
+}
+
+exports.editProfile = async (slug, admin, avatar) =>{
+    return new Promise(async (resolve,reject)=>{
+        if(avatar) {
+            // Path to store uploaded images in cloud
+            const path = 'sweet-home/images/admin/' + slug + '-avatar';
+
+            // Upload user avatar to cloud
+            const uploadedImgUrl = await uploadImage(avatar, path);
+            if(uploadedImgUrl)
+                admin["avatar"] = uploadedImgUrl;
+        }
+        
+        adminModel.updateOne({slug:slug},admin,(err)=>{
+        if(err) {
+            console.log(err);
+            reject(err);
+        }
+        resolve('edit-profile-success');
+        });
 
     })
 }

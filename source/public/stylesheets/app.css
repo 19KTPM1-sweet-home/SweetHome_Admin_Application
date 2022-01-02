@@ -635,6 +635,45 @@
   background: transparent;
 }
 
+.btn-outline-primary {
+  font-weight: bold;
+  border-color: #26B4FF;
+  background: transparent;
+  color: #26B4FF;
+}
+
+.ui-w-80 {
+  width: 80px !important;
+  height: auto;
+}
+
+.account-settings-fileinput {
+  position: absolute;
+  visibility: hidden;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.text-light {
+  color: black !important;
+}
+
+.btn-outline-primary:hover {
+  color: white !important;
+}
+.btn-outline-primary:hover .text-light {
+  color: white !important;
+}
+
+.admin-avatar {
+  vertical-align: middle;
+  width: 300px;
+  height: 300px;
+  border-radius: 60%;
+  margin-bottom: 0.3rem;
+}
+
 .home-tour-table {
   text-align: center;
 }

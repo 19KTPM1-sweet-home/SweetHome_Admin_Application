@@ -26,7 +26,9 @@
                             <div class="cover-photo"></div>
                         </div>
                         <div class="profile-photo">
-                            <img src="../../public/images/profile/profile.png" class="img-fluid rounded-circle"
+                            <img src="{{#if admin.avatar}}{{admin.avatar}}{{else}}https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png{{/if}}" class="img-fluid rounded-circle" style="
+                            width: 200px;
+                            height: 200px;"
                                 alt="avatar">
                         </div>
                         <div class="profile-info">
@@ -170,7 +172,20 @@
                                         <div class="pt-3">
                                             <div class="settings-form">
                                                 <h4 class="text-primary">Profile Setting</h4>
-                                                <form method="POST" action="/profile/edit">
+                                                <form method="POST" action="/profile/edit" enctype='multipart/form-data'>
+                                                    <div class="form-row">
+                                                        <div class="card-body media align-items-center avatar-wrapper">
+                                                          <img id="avatar" src="{{#if admin.avatar}}{{admin.avatar}}{{else}}https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png{{/if}}" alt="" class="d-block ui-w-80 img-fluid rounded-circle" style="height: 80px;">
+                                                          <div class="media-body ml-4">
+                                                            <label class="btn btn-outline-primary">
+                                                              Upload new photo
+                                                              <input id="inputAvatar" type="file" class="account-settings-fileinput" name="avatar" onChange="img_pathUrl(this)">
+
+                                                            <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
+                                                          </div>
+                                                        </div>
+                                                        <hr class="border-light m-0">
+                                                    </div>
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label>Email</label>
@@ -340,3 +355,8 @@
 
 <script src="../../public/jquery/jquery.js"></script>
 <script src="../../public/jquery/form.js"></script>
+<script>
+  function img_pathUrl(input){
+      $('#avatar')[0].src = (window.URL ? URL : webkitURL).createObjectURL(input.files[0]);
+  }
+</script>

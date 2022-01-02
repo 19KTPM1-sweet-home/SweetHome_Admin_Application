@@ -2,12 +2,12 @@ const chartService = require('../services/chartService');
 class homeController {
     //[GET]  /
     home(req, res) {
-        // if(req.user){
-        //     res.render('home',{admin:req.user});
-        // }
-        // else{
-        //     res.redirect('/login');
-        // }
+        if(req.user){
+            res.render('home',{admin:req.user});
+        }
+        else{
+            res.redirect('/login');
+        }
         res.render('home');
     }
 
