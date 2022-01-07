@@ -27,6 +27,11 @@ class accountController{
         res.send(ack);
     }
 
+    async loadAdminDetail(req, res) {
+      const admin = await adminService.loadAdminDetail(req.params.id);
+      res.render('adminDetail', {admin});
+    }
+
     async unlockAdminAccount(req, res) {
       const ack = await adminService.unlockAdminAccount(req.params.id);
       if(ack)
@@ -62,6 +67,11 @@ class accountController{
       const ack = await adminService.unlockUserAccount(req.params.id);
       if(ack)
         res.send(ack);
+    }
+
+    async loadUserDetail(req, res) {
+      const user = await adminService.loadUserDetail(req.params.id);
+      res.render('userDetail', {user});
     }
 }
 

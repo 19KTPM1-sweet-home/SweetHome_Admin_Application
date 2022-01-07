@@ -23,9 +23,10 @@ function loadUserPerPage(currentPage) {
             <td>Unknown</td>
             {{/if}}
 
-            <td>
+            <td class="pd-0">
 
                 <div id="{{@index}}" class="action-col">
+                    <a href='/account/user/detail/{{this.id}}' class="btn btn-primary detail-btn">Detail</a>
                     {{#ifEquals this.lock "true"}}
                     <button type="button" class="btn btn-warning unlock-user-btn">Unlock</button>
                     {{else}}

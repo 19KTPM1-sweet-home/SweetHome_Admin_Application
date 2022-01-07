@@ -127,6 +127,7 @@ $(window).on('load', () => {
                 {{/if}}
                 <td>
                     <div id="{{@index}}" class="action-col">
+                        <a href='/account/admin/detail/{{this._id}}' class="btn btn-primary detail-btn">Detail</a>
                         {{#ifEquals this.lock "true"}}
                         <button type="button" class="btn btn-warning unlock-user-btn">Unlock</button>
                         {{else}}
@@ -199,9 +200,9 @@ $(window).on('load', () => {
                },
                success: function(res){
                     if(request == 'lock')
-                        $('#' + adminIndex.toString()).html('<button type="button" class="btn btn-warning unlock-user-btn">Unlock</button>')
+                        $('#' + adminIndex.toString()).html('<a href="/account/admin/detail/{{this._id}}" class="btn btn-primary detail-btn">Detail</a> <button type="button" class="btn btn-warning unlock-user-btn">Unlock</button>')
                     else
-                        $('#' + adminIndex.toString()).html('<button type="button" class="btn btn-danger lock-user-btn">Lock</button>')
+                        $('#' + adminIndex.toString()).html('<a href="/account/admin/detail/{{this._id}}" class="btn btn-primary detail-btn">Detail</a> <button type="button" class="btn btn-danger lock-user-btn">Lock</button>')
 
                     // Open lock modal
                     $('.lock-user-btn').on( 'click', function (e) { 

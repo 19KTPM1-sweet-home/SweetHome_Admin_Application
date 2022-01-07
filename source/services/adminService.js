@@ -105,6 +105,7 @@ exports.createAccount = (username,password,fullname) =>{
             password: hashPassword,
             fullname: fullname,
             slug:'',
+            lock: 'false'
         });
         newAdminModel.save((err) => {
             if(err) {
@@ -202,4 +203,50 @@ module.exports.unlockAdminAccount = (id) =>{
             resolve('success');
         });
     });
+}
+
+
+module.exports.loadUserDetail = (id) => {
+    return new Promise(async (resolve, reject) => {
+        const user = await userModel
+            .findOne({_id: id})
+            .select('fullName email address phoneNumber avatar status lock')
+            .lean();
+        var lock = 'Normal';
+        if(user.lock == 'true')
+            lock = 'Banned';
+            
+        resolve({
+            id: user._id.toString(),
+            fullName: user.fullName,
+            email: user.email,
+            phoneNumber: user.phoneNumber,
+            avatar: user.avatar,
+            address: user.address,
+            status: user.status,
+            lock: lock
+        });
+    })
+}
+
+module.exports.loadAdminDetail = (id) => {
+    return new Promise(async (resolve, reject) => {
+        const admin = await adminModel
+            .findOne({_id: id})
+            .select('fullname email address phoneNumber avatar lock')
+            .lean();
+        var lock = 'Normal';
+        if(admin.lock == 'true')
+            lock = 'Banned';
+            
+        resolve({
+            id: admin._id.toString(),
+            fullName: admin.fullname,
+            email: admin.email,
+            phoneNumber: admin.phoneNumber,
+            avatar: admin.avatar,
+            address: admin.address,
+            lock: lock
+        });
+    })
 }
