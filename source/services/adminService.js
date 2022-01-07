@@ -1,7 +1,9 @@
 const adminModel = require('../models/Admin');
+const userModel = require('../models/User');
 const bcrypt = require('bcrypt');
 const cloudinary = require('../cloudinary/cloudinary');
 const streamifier = require('streamifier');
+const userPerPage = 5;
 
 exports.findByUsername = (username)=>{
     const admin = adminModel.findOne({
@@ -110,5 +112,70 @@ exports.createAccount = (username,password,fullname) =>{
             }
             resolve("add-new-account-success");
         })
+    });
+}
+
+
+
+module.exports.loadUserPerPage = (page) => {
+    return new Promise((resolve, reject) => {
+
+        userModel
+            .find()
+            .select('fullName email phoneNumber avatar lock')
+            .sort({'createdAt':-1})
+            .skip((userPerPage * page) - userPerPage)
+            .limit(userPerPage)
+            .exec((err, users) => {
+                const listUser = users.map((user) => {
+                    return {
+                        id: user._id,
+                        fullName: user.fullName,
+                        email: user.email,
+                        phoneNumber: user.phoneNumber,
+                        avatar: user.avatar,
+                        lock: user.lock || ""
+                    }
+                })
+            
+                // Count total tours
+                userModel.countDocuments((err, count) => {
+                    if(err) {
+                        console.log(err);
+                        reject(err);
+                    }
+                    else {
+                        resolve({
+                            listUser: listUser,
+                            numOfUser: count
+                        });
+                    }
+                });
+                
+            });
+    })
+}
+
+module.exports.lockUserAccount = (id) =>{
+    return new Promise( async (resolve, reject) => {
+        userModel.findOneAndUpdate({_id: id}, {lock: true}, (err) => {
+            if(err) {
+                console.log(err);
+                reject(err);
+            }
+            resolve('success');
+        });
+    });
+}
+
+module.exports.unlockUserAccount = (id) =>{
+    return new Promise( async (resolve, reject) => {
+        userModel.findOneAndUpdate({_id: id}, {lock: false}, (err) => {
+            if(err) {
+                console.log(err);
+                reject(err);
+            }
+            resolve('success');
+        });
     });
 }

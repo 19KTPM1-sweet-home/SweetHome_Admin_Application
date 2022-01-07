@@ -18,6 +18,28 @@ class accountController{
         
         
     }
+
+    async showUserAccount(req, res) {
+        res.render('account/user');
+    }
+
+    async loadUserPerPage(req, res) {
+      const listUser = await adminService.loadUserPerPage(req.params.page);
+      if(listUser)
+        res.send(listUser);
+    }
+
+    async lockUserAccount(req, res) {
+      const ack = await adminService.lockUserAccount(req.params.id);
+      if(ack)
+        res.send(ack);
+    }
+
+    async unlockUserAccount(req, res) {
+      const ack = await adminService.unlockUserAccount(req.params.id);
+      if(ack)
+        res.send(ack);
+    }
 }
 
 module.exports = new accountController();

@@ -18,6 +18,7 @@ const User = new Schema(
     email: { type: String, unique: true, required: true },
     phoneNumber: {type: String, unique: true},
     schedule: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Schedule' }],
+    lock: {type: String, required: true},
     slug: { type: String, slug: 'fullName', unique: true},
   },
   {

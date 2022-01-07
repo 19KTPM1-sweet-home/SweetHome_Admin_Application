@@ -8,7 +8,6 @@ class tourController {
         res.render('homeTour');
     }
 
-    // GET comment per pages
     async loadTourPerPage(req, res) {
       const homeTourPackage = await tourService.loadTourPerPage(req.params.filter, req.params.page);
       if(homeTourPackage)
