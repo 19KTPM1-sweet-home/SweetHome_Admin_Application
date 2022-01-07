@@ -101,4 +101,147 @@ $(window).on('load', () => {
     // validate for change-password-form
     validate("#change-password-form");
     checkMatch("#change-password-form","newPassword");
+
+
+
+
+    var listAdmin = [];
+    var adminIndex = null;
+    var request = null;
+    function loadAdmin() {
+        const origin = window.location.origin + window.location.pathname;
+        const url = origin + '/list';
+
+        $.get(url, function (data) {
+            listAdmin = data.listAdmin;
+            var template = Handlebars.compile(`
+            {{#each listAdmin}}
+            <tr class="alert">
+
+                <td>{{this.fullname}}</td>
+                <td>{{this.username}}</td>
+                {{#if this.phoneNumber}}
+                <td>{{this.phoneNumber}}</td>
+                {{else}}
+                <td>Unknown</td>
+                {{/if}}
+                <td>
+                    <div id="{{@index}}" class="action-col">
+                        {{#ifEquals this.lock "true"}}
+                        <button type="button" class="btn btn-warning unlock-user-btn">Unlock</button>
+                        {{else}}
+                        <button type="button" class="btn btn-danger lock-user-btn">Lock</button>
+                        {{/ifEquals}}
+                    </div>
+                </td>
+            </tr>
+            {{/each}}
+            `);
+
+            $('.table-body').html(template({listAdmin: data.listAdmin, accountExist: data.accountExist,
+            addAccountSuccess: data.addAccountSuccess}));
+
+            // Open lock modal
+            $('.lock-user-btn').on( 'click', function (e) { 
+                e.preventDefault();
+                $(this).removeAttr("href");
+                $('#lockModal').modal('show');
+                $('#lockModal .modal-body').html('<p>Do you really want to lock this admin?</p>');
+                $('#lockModal .lock-modal-lock-btn').html('Lock');
+                adminIndex = $(this).parent().attr('id');
+                request = 'lock';
+            });
+
+            $('.unlock-user-btn').on( 'click', function (e) { 
+                e.preventDefault();
+                $(this).removeAttr("href");
+                $('#lockModal').modal('show');
+                $('#lockModal .modal-body').html('<p>Do you really want to unlock this admin?</p>');
+                $('#lockModal .lock-modal-lock-btn').html('Unlock');
+                adminIndex = $(this).parent().attr('id');
+                request = 'unlock';
+            });
+        });
+    }
+
+    loadAdmin();
+    // ------- LOCK MODAL EVENT -------
+
+    // Close lock modal
+    $('.lock-modal-cancel-btn').on( 'click', function (e) { 
+        e.preventDefault();
+        $(this).removeAttr("href");
+        $('#lockModal').modal('hide');
+    });
+
+    // Close lock modal
+    $('.exit-lock-modal-btn').on( 'click', function (e) { 
+        e.preventDefault();
+        $(this).removeAttr("href");
+        $('#lockModal').modal('hide');
+    });
+
+    $('.lock-modal-lock-btn').on( 'click', function (e) { 
+        e.preventDefault();
+        $(this).removeAttr("href");
+        const origin = window.location.origin + window.location.pathname;
+        const url = origin + '/' + request + '/' + listAdmin[adminIndex]._id.toString();
+        $.ajax({
+               type: "POST",
+               url: url,
+               processData: false,
+               contentType: false,
+               beforeSend: function(){
+                   // Show loading spinner
+                   $('.spanner').addClass('show');
+                   $('.overlay-spinner').addClass('show');
+                   $('#lockModal').modal('hide');
+               },
+               success: function(res){
+                    if(request == 'lock')
+                        $('#' + adminIndex.toString()).html('<button type="button" class="btn btn-warning unlock-user-btn">Unlock</button>')
+                    else
+                        $('#' + adminIndex.toString()).html('<button type="button" class="btn btn-danger lock-user-btn">Lock</button>')
+
+                    // Open lock modal
+                    $('.lock-user-btn').on( 'click', function (e) { 
+                        e.preventDefault();
+                        $(this).removeAttr("href");
+                        $('#lockModal').modal('show');
+                        $('#lockModal .modal-body').html('<p>Do you really want to lock this admin?</p>');
+                        $('#lockModal .lock-modal-lock-btn').html('Lock');
+                        adminIndex = $(this).parent().attr('id');
+                        request = 'lock';
+                    });
+
+                    $('.unlock-user-btn').on( 'click', function (e) { 
+                        e.preventDefault();
+                        $(this).removeAttr("href");
+                        $('#lockModal').modal('show');
+                        $('#lockModal .modal-body').html('<p>Do you really want to unlock this admin?</p>');
+                        $('#lockModal .lock-modal-lock-btn').html('Unlock');
+                        adminIndex = $(this).parent().attr('id');
+                        request = 'unlock';
+                    });
+                    // Show success modal
+                   $('#successModal').modal('show');
+                   // Hide loading spinner
+                   $('.spanner').removeClass('show');
+                   $('.overlay-spinner').removeClass('show');
+                   $('#successTitle').text('Success');
+                   $('#successMsg').text('Admin has been locked');
+
+               },
+               error: function(XMLHttpRequest, textStatus, errorThrown) {
+                  if(errorThrown) {
+                      console.log(errorThrown);
+                      // Show error modal
+                       $('#errorModal').modal('show');
+                       $('#lockModal').modal('hide');
+                       $('#errorTitle').text('Error');
+                       $('#errorMsg').text('Error: ' + errorThrown);
+                  }
+               }
+        });
+    });
 })

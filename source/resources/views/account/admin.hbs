@@ -1,6 +1,7 @@
 <!--**********************************
             Content body start
         ***********************************-->
+
 <div class="content-body" style="min-height: 932px;">
     <div class="container-fluid">
         <div class="row page-titles mx-0">
@@ -47,46 +48,11 @@
                                                             <th>Full Name</th>
                                                             <th>Username</th>
                                                             <th>Phone Number</th>
-                                                            <th>Jobs</th>
                                                             <th>&nbsp;</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
-                                                        {{#each admins}}
-                                                        <tr class="alert">
-
-                                                            <td class="d-flex align-items-center">
-                                                                <div class="img"
-                                                                    style="background-image: url(../../../public/images/avatar/2.png);">
-                                                                </div>
-                                                                <div class="pl-3 email">
-                                                                    <span>{{this.fullname}}</span>
-                                                                </div>
-                                                            </td>
-                                                            <td>{{this.username}}</td>
-                                                            {{#if this.phoneNumber}}
-                                                            <td>{{this.phoneNumber}}</td>
-                                                            {{else}}
-                                                            <td>Unknown</td>
-                                                            {{/if}}
-
-                                                            {{#if this.job}}
-                                                            <td class="status"><span class="active">{{this.job}}</span>
-                                                            </td>
-                                                            {{else}}
-                                                            <td class="status"><span class="waiting">Unknown</span></td>
-                                                            {{/if}}
-                                                            <td>
-                                                                <a type="button" class="edit">
-                                                                    <i class="ti-pencil"></i>
-                                                                </a>
-                                                                <button type="button" class="close" 
-                                                                    aria-label="Close">
-                                                                    <i class="fa fa-close"></i>
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-                                                        {{/each}}
+                                                    <tbody class="table-body">
+                                                        
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -104,6 +70,27 @@
     <!--**********************************
             Content body end
         ***********************************-->
+    <!--Lock Modal HTML -->
+    <div id="lockModal" class="modal fade">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header flex-column">
+                    <div class="delete-icon-box">
+                        <i class="material-icons">&#xE5CD;</i>
+                    </div>						
+                    <h4 class="modal-title w-100">Are you sure?</h4>	
+                    <button type="button" class="close exit-lock-modal-btn" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Do you really want to lock this user?</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary lock-modal-cancel-btn">Cancel</button>
+                    <button type="button" class="btn btn-danger lock-modal-lock-btn">Lock</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Modal -->
     <div class="modal fade" id="add-admin-account-modal" style="display: true;" aria-hidden="true">
         <div class="modal-dialog">
@@ -217,5 +204,7 @@
 <script src="/public/javascripts/js/quixnav-init.js"></script>
 <script src="/public/javascripts/js/custom.min.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
+<script src="../../public/javascripts/handlebarHelper.js"></script>
 <script src="../../public/jquery/jquery.js"></script>
 <script src="../../public/jquery/form.js"></script>

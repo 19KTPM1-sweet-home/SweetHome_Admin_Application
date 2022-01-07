@@ -16,6 +16,7 @@ const Admin = new Schema(
     address:{type:String},
     avatar:{type:String},
     background:{type:String},
+    lock:{type: String, required: true},
     slug: { type: String, slug: 'username', unique: true },
   },
   {

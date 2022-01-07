@@ -3,11 +3,34 @@ const adminService = require('../services/adminService')
 class accountController{
     //[GET]  /account/admin
     async showAdminAccount(req, res) {
+        res.render('account/admin');
+    }
+
+    async loadAdminAccount(req, res) {
         const addAccountSuccess = req.query['add-new-account-success'] !== undefined;
         const accountExist = req.query['exist'] !== undefined;
-        
+
         const admins = await adminService.listAll();
-        res.render('account/admin',{accountExist,addAccountSuccess,admins: admins});
+        if(admins) {
+            res.send({
+                listAdmin: admins,
+                accountExist: accountExist,
+                addAccountSuccess: addAccountSuccess
+            })
+        }
+        // res.render('account/admin',{accountExist,addAccountSuccess,admins: admins});
+    }
+
+    async lockAdminAccount(req, res) {
+      const ack = await adminService.lockAdminAccount(req.params.id);
+      if(ack)
+        res.send(ack);
+    }
+
+    async unlockAdminAccount(req, res) {
+      const ack = await adminService.unlockAdminAccount(req.params.id);
+      if(ack)
+        res.send(ack);
     }
 
     //POST /account/admin/create

@@ -179,3 +179,27 @@ module.exports.unlockUserAccount = (id) =>{
         });
     });
 }
+
+module.exports.lockAdminAccount = (id) =>{
+    return new Promise( async (resolve, reject) => {
+        adminModel.findOneAndUpdate({_id: id}, {lock: true}, (err) => {
+            if(err) {
+                console.log(err);
+                reject(err);
+            }
+            resolve('success');
+        });
+    });
+}
+
+module.exports.unlockAdminAccount = (id) =>{
+    return new Promise( async (resolve, reject) => {
+        adminModel.findOneAndUpdate({_id: id}, {lock: false}, (err) => {
+            if(err) {
+                console.log(err);
+                reject(err);
+            }
+            resolve('success');
+        });
+    });
+}
