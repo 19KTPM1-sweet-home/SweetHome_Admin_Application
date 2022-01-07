@@ -9,13 +9,13 @@ class accountController{
     async loadAdminAccount(req, res) {
         const addAccountSuccess = req.query['add-new-account-success'] !== undefined;
         const accountExist = req.query['exist'] !== undefined;
-
         const admins = await adminService.listAll();
         if(admins) {
             res.send({
                 listAdmin: admins,
                 accountExist: accountExist,
-                addAccountSuccess: addAccountSuccess
+                addAccountSuccess: addAccountSuccess,
+                currentAdminId: req.user._id.toString()
             })
         }
         // res.render('account/admin',{accountExist,addAccountSuccess,admins: admins});

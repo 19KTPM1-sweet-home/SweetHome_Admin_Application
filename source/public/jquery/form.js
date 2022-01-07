@@ -125,6 +125,10 @@ $(window).on('load', () => {
                 {{else}}
                 <td>Unknown</td>
                 {{/if}}
+
+                {{#ifEquals this._id ../currentAdminId}}
+                
+                {{else}}
                 <td>
                     <div id="{{@index}}" class="action-col">
                         <a href='/account/admin/detail/{{this._id}}' class="btn btn-primary detail-btn">Detail</a>
@@ -135,11 +139,14 @@ $(window).on('load', () => {
                         {{/ifEquals}}
                     </div>
                 </td>
+                {{/ifEquals}}
+                
             </tr>
             {{/each}}
             `);
 
-            $('.table-body').html(template({listAdmin: data.listAdmin, accountExist: data.accountExist,
+            
+            $('.table-body').html(template({currentAdminId: data.currentAdminId, listAdmin: data.listAdmin, accountExist: data.accountExist,
             addAccountSuccess: data.addAccountSuccess}));
 
             // Open lock modal
