@@ -23,8 +23,8 @@ $(window).on('load', function () {
                 $('#successMsg').text('Home tour status updated');
 
                 if(res == 'success') {
-                    const currentPage = $('.pagination-wrapper').pagination('getCurrentPage');
-                    $('.pagination-wrapper').pagination('drawPage', currentPage);
+                    const currentPage = $('.paging-wrapper').pagination('getCurrentPage');
+                    $('.paging-wrapper').pagination('drawPage', currentPage);
                     loadTourPerPage(currentPage);
                 }
     
