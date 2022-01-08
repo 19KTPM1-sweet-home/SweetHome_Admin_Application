@@ -2,8 +2,10 @@ const adminService = require('../services/adminService')
 class authController {
     //[GET]  /login
     show(req, res) {
-        const wrongPassword = req.query['wrong-password'] !== undefined;
-        res.render('login',{layout:false, wrongPassword: wrongPassword});
+        const errorMsg = req.flash('errorMsg');
+        res.render('login', { errorMsg, layout: false });
+        // const wrongPassword = req.query['wrong-password'] !== undefined;
+        // res.render('login',{layout:false, wrongPassword: wrongPassword});
     }
 
     //[POST] /login/change-password

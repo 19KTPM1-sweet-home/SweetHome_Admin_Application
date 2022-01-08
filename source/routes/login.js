@@ -10,7 +10,7 @@ router.post('/change-password', loginController.changePassword)
 // submit login form => [POST] /login
 router.post('/', passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/login?wrong-password'
+    failureRedirect: '/login?error'
 }));
 
 // show login screen => [GET] /login

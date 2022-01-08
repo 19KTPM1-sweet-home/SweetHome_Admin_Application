@@ -3,16 +3,18 @@ const passport = require('passport')
 
 const adminService = require('../services/adminService')
 
-passport.use(new LocalStrategy(
-  async function(username, password, done) {
+passport.use(new LocalStrategy({passReqToCallback: true},
+  async function(req, username, password, done) {
     const admin = await adminService.findByUsername(username);
     if(!admin){
-      return done(null,false,{message: 'Incorrect username.'})
+      return done(null,false,{messages: req.flash('errorMsg', 'Incorrect username')})
     }
     const isValid = await adminService.validPassword(password,admin);
     if(!isValid){
-      return done(null, false, { message: 'Incorrect password.' }); 
+      return done(null, false, { messages: req.flash('errorMsg', 'Incorrect password') }); 
     }
+    if(admin.lock == 'true')
+      return done(null, false, { messages: req.flash('errorMsg', 'Your account was banned') }); 
     return done(null, admin);
     
   }

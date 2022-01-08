@@ -351,6 +351,6 @@ module.exports.loadTop10PropertiesOfInterest = () => {
         listOfAllFavouriteProperties.sort((first, second) => {
             return second.count - first.count;
         });
-        resolve(listOfAllFavouriteProperties);
+        resolve(listOfAllFavouriteProperties.slice(0, 10));
     });
 }

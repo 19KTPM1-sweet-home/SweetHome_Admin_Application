@@ -149,9 +149,6 @@ $(window).on('load', function () {
                     <div class="category-col">{{this.category}}</div>
                 </td>
                 <td>
-                    <div class="address-col">{{this.address}}</div>
-                </td>
-                <td>
                     <div class="seller-col">{{this.seller}}</div>
                 </td>
                 <td>

@@ -7,6 +7,7 @@ const app = express();
 const route = require('./routes');
 const session = require("express-session");
 const passport = require('passport');
+const flash = require('connect-flash');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 
@@ -26,6 +27,9 @@ app.use(cookieParser());
 app.use(session({ secret: process.env.SESSION_SECRET_STRING, resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+// setup flash msg
+app.use(flash());
 
 app.use('/public', express.static('public'))
 

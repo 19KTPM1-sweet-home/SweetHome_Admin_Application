@@ -78,12 +78,12 @@
 
 
 
-{{#if wrongPassword}}
+{{#if errorMsg}}
     <div class="row justify-content-end fixed-bottom">
         <div class="col-lg-6">
             <div class="alert alert-danger left-icon-big alert-dismissible fade show">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span><i
-                            class="mdi mdi-close"></i></span>
+                            class="mdi mdi-close" style="color: black"></i></span>
                 </button>
                 <div class="media">
                     <div class="alert-left-icon-big">
@@ -91,7 +91,7 @@
                     </div>
                     <div class="media-body">
                         <h5 class="mt-1 mb-1">Login failed!</h5>
-                        <p>Invalid username or password</p>
+                        <p style="color: black">{{errorMsg}}</p>
                     </div>
                 </div>
             </div>
