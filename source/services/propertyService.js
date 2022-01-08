@@ -182,7 +182,6 @@ module.exports.addNewProperty = (previewImage, detailImages, newProperty) => {
             slug: 'default'
         });
 
-
         // Generate slug from property name, language: vi
         const slugGenerateField = 'name';
         const slug = await generateUniqueSlug(newPropertyModel, slugGenerateField);

@@ -25,6 +25,9 @@ $(window).on('load', () => {
                 $('.overlay-spinner').removeClass('show');
                 $('#successTitle').text('Success');
                 $('#successMsg').text('Property has deleted in the database');
+
+                $('.paging-wrapper').pagination('drawPage', 1);
+                loadPropertiesPerPage(1);
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
                if(errorThrown) {

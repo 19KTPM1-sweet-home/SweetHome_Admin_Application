@@ -132,10 +132,10 @@ $(window).on('load', () => {
            $('#editForm #editPrice').val(property.price);
            $('#editForm #editRate').val(property.rate);
            $('#editForm #editStatus').val(property.status);
-
+            console.log(property.feature)
            $('#editForm #feature-1').val(property.feature[0]);
            for(let i = 1; i < property.feature.length; i++) {
-               const featureId = 'feature-' + i.toString();
+               const featureId = 'feature-' + (i + 1).toString();
                const template = `
                    <div class="feature-input">
                        <div class="d-flex align-item-center">
@@ -151,7 +151,8 @@ $(window).on('load', () => {
 
                const container = $("#editForm #editFeatureList");
                container.append(template);
-               const selector = '#editForm' + ' #' + featureId
+               const selector = '#editForm ' + ' #' + featureId
+
                $(selector).val(property.feature[i]);
            }
            $('#editForm #editSellerName').val(property.seller.name);
@@ -166,6 +167,7 @@ $(window).on('load', () => {
         e.preventDefault();
         $(this).removeAttr("href");
         $('#editForm').removeClass($('#editForm')[0].classList[2]);
+        $('.feature-input').empty();
         $('#editPropertyModal').modal('hide');
     });
 
@@ -174,6 +176,7 @@ $(window).on('load', () => {
         e.preventDefault();
         $(this).removeAttr("href");
         $('#editForm').removeClass($('#editForm')[0].classList[2]);
+        $('.feature-input').empty();
         $('#editPropertyModal').modal('hide');
     });
 })

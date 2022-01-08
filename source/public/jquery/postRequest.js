@@ -73,8 +73,10 @@ $(window).on('load', () => {
                   $('#successMsg').text('Property has updated in the database');
 
                   $('#editForm').removeClass($('#editForm')[0].classList[2]);
-                  $('.paging-wrapper').pagination('drawPage', 1);
-                  loadPropertiesPerPage(1);
+                  $('.feature-input').empty();
+                  const currentPage = $('.paging-wrapper').pagination('getCurrentPage');
+                  $('.paging-wrapper').pagination('drawPage', currentPage);
+                  loadPropertiesPerPage(currentPage);
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
                if(errorThrown) {
