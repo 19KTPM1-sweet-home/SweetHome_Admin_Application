@@ -114,6 +114,7 @@ $(window).on('load', () => {
 
         $.get(url, function (data) {
             listAdmin = data.listAdmin;
+            console.log(listAdmin);
             var template = Handlebars.compile(`
             {{#each listAdmin}}
             <tr class="alert">
@@ -206,10 +207,11 @@ $(window).on('load', () => {
                    $('#lockModal').modal('hide');
                },
                success: function(res){
+                    var tmp = '<a href="/account/admin/detail/' + listAdmin[adminIndex]._id.toString()  + '" class="btn btn-primary detail-btn">Detail</a>';
                     if(request == 'lock')
-                        $('#' + adminIndex.toString()).html('<a href="/account/admin/detail/{{this._id}}" class="btn btn-primary detail-btn">Detail</a> <button type="button" class="btn btn-warning unlock-user-btn">Unlock</button>')
+                        $('#' + adminIndex.toString()).html(tmp + ' <button type="button" class="btn btn-warning unlock-user-btn">Unlock</button>')
                     else
-                        $('#' + adminIndex.toString()).html('<a href="/account/admin/detail/{{this._id}}" class="btn btn-primary detail-btn">Detail</a> <button type="button" class="btn btn-danger lock-user-btn">Lock</button>')
+                        $('#' + adminIndex.toString()).html(tmp + ' <button type="button" class="btn btn-danger lock-user-btn">Lock</button>')
 
                     // Open lock modal
                     $('.lock-user-btn').on( 'click', function (e) { 
