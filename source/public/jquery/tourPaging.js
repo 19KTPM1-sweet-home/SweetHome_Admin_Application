@@ -12,19 +12,19 @@ function loadTourPerPage(currentPage) {
         {{#each homeTour}}
         <tr">
             <td>
-                <div class="property-name-col">{{this.propertyName}}</div>
+                <div class="property-name-col" style="text-align:left;">{{this.propertyName}}</div>
             </td>
             <td>
-                <div class="address-col">{{this.propertyAddress}}</div>
+                <div class="address-col" style="text-align:left;">{{this.propertyAddress}}</div>
             </td>
             <td>
-                <div class="seller-col">{{this.sellerName}}</div>
+                <div class="seller-col" style="white-space:nowrap;">{{this.sellerName}}</div>
             </td>
             <td>
-                <div class="customer-col">{{this.customerName}}</div>
+                <div class="customer-col" style="white-space:nowrap;">{{this.customerName}}</div>
             </td>
             <td>
-                <div class="appointment-date-col">{{this.appointmentDate}}</div>
+                <div class="appointment-date-col" style="white-space:nowrap;">{{this.appointmentDate}}</div>
             </td>
             <td>
                 {{#ifEquals this.status "pending"}}
@@ -108,8 +108,8 @@ $(window).on('load', function () {
     $('.tour-filter-wrapper label').on('click', function() {
         currentFilter = $(this).children().val();
         const currentPage = $('.paging-wrapper').pagination('getCurrentPage');
-        $('.paging-wrapper').pagination('drawPage', currentPage);
-        loadTourPerPage(currentPage);
+        $('.paging-wrapper').pagination('drawPage', 1);
+        loadTourPerPage(1);
     });
     
 
