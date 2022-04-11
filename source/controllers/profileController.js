@@ -11,8 +11,16 @@ class profileController{
 
     //[POST] /profile/edit
     async edit(req, res){
-        const ack = await adminService.editProfile(req.user.slug,req.body, req.files.avatar[0]);
-        res.redirect('/profile?'+ack);
+        if(req.files.avatar) {
+            const ack = await adminService.editProfile(req.user.slug,req.body, req.files.avatar[0]);
+            res.redirect('/profile?'+ack);
+        }
+        else {
+          const ack = await adminService.editProfile(req.user.slug,req.body, null);
+          res.redirect('/profile?'+ack);
+        }
+        
+        
     }
 }
 module.exports = new profileController();
