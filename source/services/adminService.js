@@ -1,6 +1,6 @@
 const adminModel = require('../models/Admin');
 const userModel = require('../models/User');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const cloudinary = require('../cloudinary/cloudinary');
 const streamifier = require('streamifier');
 const userPerPage = 5;
